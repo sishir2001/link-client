@@ -1,5 +1,11 @@
+import Check from "./components/check";
+
 function App() {
-    return <div>App</div>;
+    return (
+        <div>
+            <Check />
+        </div>
+    );
 }
 
 export default App;
