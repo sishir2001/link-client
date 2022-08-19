@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
 }));
 
-const About = (props) => {
+const About = ({ scrollRef }) => {
     const classes = useStyles();
     const headingText = "What is this platform all about?";
 
@@ -86,7 +86,12 @@ const About = (props) => {
         <div className={classes.root}>
             {/* Heading */}
             <div className={classes.toolbar}></div>
-            <Typography variant="h4" align="center" className={classes.heading}>
+            <Typography
+                ref={scrollRef}
+                variant="h4"
+                align="center"
+                className={classes.heading}
+            >
                 {headingText}
             </Typography>
 
