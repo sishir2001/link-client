@@ -1,7 +1,7 @@
-@import url("https://fonts.googleap@import url('https://fonts.googleapis.com/css2?family=Lekton&family=Lora&family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');is.com/css2?fa@import url('https://fonts.googleapis.com/css2?family=Lekton:wght@400;700&family=Lora&family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');mily=Lora&family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lekton:wght@400;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 body {
     margin: 0;
-    font-family: -apple-system, "Roboto", "Lora", "Poppins", "Lekton";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

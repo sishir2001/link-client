@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        background: "#322ABF",
+        background: "#1b28a8",
     },
     menuButton: {
         marginRight: theme.spacing(1),
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
         paddingLeft: theme.spacing(2),
         paddingRight: theme.spacing(2),
+        borderRadius: 40,
     },
 }));
 
@@ -106,7 +107,7 @@ const Header = (props) => {
     };
     return (
         <div>
-            <AppBar className={classes.root} position="static" disableElevation>
+            <AppBar className={classes.root} elevation={0}>
                 <Toolbar>
                     <Typography variant="h4" className={classes.title}>
                         link
