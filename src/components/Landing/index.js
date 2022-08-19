@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import React, { useRef } from "react";
+import Members from "./Members/index";
 import About from "./About";
 import Home from "./Home";
 
@@ -17,6 +18,7 @@ const Landing = (props) => {
         <div>
             <Home scrollRef={scrollRef} />
             <About scrollRef={scrollRef} />
+            <Members />
         </div>
     );
 };
