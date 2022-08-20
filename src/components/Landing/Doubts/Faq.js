@@ -6,7 +6,7 @@ import Minus from "../../../svgs/minus.svg";
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor:"#ECECEC",
-        padding: theme.spacing(4),
+        padding: theme.spacing(2),
         borderRadius: 10,
         boxShadow: "7px 7px 5px rgba(27, 27, 27, 0.25)",
         marginBottom: theme.spacing(4),
@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     img: {
         width: 30,
         height:30,
+        cursor: "pointer",
     },
 }));
 
