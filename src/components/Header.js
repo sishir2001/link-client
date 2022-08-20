@@ -110,7 +110,7 @@ const Header = (props) => {
             <AppBar className={classes.root} elevation={0}>
                 <Toolbar>
                     <Typography variant="h4" className={classes.title}>
-                        link
+                        link.
                     </Typography>
                     {renderRightHeaderOptions()}
                 </Toolbar>

@@ -33,13 +33,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Home = (props) => {
+const Home = ({ scrollRef }) => {
     const classes = useStyles();
     const motto = "Link between your journey from empathizing to implementing.";
     const wish = "Join us today to make your dream into a reality...";
 
     const handleKnowMore = () => {
         console.log("Clicked on know more");
+        scrollRef.current?.scrollIntoView({
+            behavior: "smooth",
+        });
     };
     return (
         <div className={classes.root}>
