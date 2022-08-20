@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {makeStyles} from "@material-ui/core";
+import { Icon, makeStyles} from "@material-ui/core";
 import Plus from "../../../svgs/plus.svg";
 import Minus from "../../../svgs/minus.svg";
 
