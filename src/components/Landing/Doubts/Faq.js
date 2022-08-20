@@ -26,13 +26,15 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "justify",
     },
     container: {
-        paddingLeft: theme.spacing(5),
+        paddingLeft: theme.spacing(3),
         paddingRight: theme.spacing(2),
     },
     img: {
         width: 30,
         height:30,
         cursor: "pointer",
+        paddingLeft: theme.spacing(2),
+        paddingTop: 5,
     },
 }));
 
