@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core";
 import React from "react";
 import Home from "./Home";
 import Footer from "./Footer";
+import Doubts from "./Doubts/Doubts";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,6 +15,7 @@ const Landing = (props) => {
     return (
         <div>
             <Home />
+            <Doubts/>
             <Footer/>
         </div>
     );

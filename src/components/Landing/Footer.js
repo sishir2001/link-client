@@ -41,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: theme.spacing(2),
     },
     grid1: {
-        paddingTop: 40,
         height:100,
         display: "flex",
         flexDirection: "row",
@@ -49,8 +48,8 @@ const useStyles = makeStyles((theme) => ({
         justifyContent:"center"
     },
     button: {
-        paddingTop: theme.spacing(3),
-        borderRadius: 60
+        color: "white",
+        background: "linear-gradient(105.5deg, #EE5060 19.57%, #B25A59 78.85%)",
     },
     textField: {
         color: "#F0C53E",
@@ -124,7 +123,7 @@ const Footer = (props) => {
                     </label>
                 </Grid>
                 <Grid item xs={1}>
-                    <Button variant="contained" color="secondary" classname= {classes.button} style={{ borderRadius: 50 }}>
+                    <Button className={classes.button} variant="contained" style={{ borderRadius: 50 }}>
                         Subscribe
                     </Button>
                 </Grid>
