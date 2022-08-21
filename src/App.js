@@ -77,23 +77,24 @@ function App() {
     const classes = useStyles();
     return (
         <ThemeProvider theme={theme}>
-            {/* <div className={classes.toolbar}></div> */}
             <Router>
                 <Header />
-                <Switch>
-                    <Route exact path="/">
-                        <AuthCheck />
-                    </Route>
-                    <Route exact path="/landing">
-                        <Landing />
-                    </Route>
-                    <Route exact path="/feed">
-                        <Feed />
-                    </Route>
-                    <Route exact path="/profile">
-                        <Profile />
-                    </Route>
-                </Switch>
+                <div>
+                    <Switch>
+                        <Route exact path="/">
+                            <AuthCheck  />
+                        </Route>
+                        <Route exact path="/landing">
+                            <Landing />
+                        </Route>
+                        <Route exact path="/feed">
+                            <Feed />
+                        </Route>
+                        <Route exact path="/profile">
+                            <Profile />
+                        </Route>
+                    </Switch>
+                </div>
             </Router>
         </ThemeProvider>
     );

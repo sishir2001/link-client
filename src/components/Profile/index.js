@@ -1,23 +1,24 @@
 import { makeStyles } from "@material-ui/core";
 import React, { useRef } from "react";
 // import Notifications from "./Notification/Notifications";
+import globalUseStyles from "../../GlobalStyle";
+import Info from "./Info";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         padding: theme.spacing(3),
     },
-    toolbar: theme.mixins.toolbar,
 }));
 
 const Profile = (props) => {
     const classes = useStyles();
-    const scrollRef = useRef(null);
+    const globalClasses = globalUseStyles();
 
     return (
-        <div>
-            <div className={classes.toolbar}></div>
+        <div className={`${globalClasses.toolbarMargin}`}>
+            <div className={globalClasses.toolbar}></div>
             {/* <Notifications/> */}
-            Profile
+            <Info />
         </div>
     );
 };

@@ -1,14 +1,13 @@
 import { makeStyles, Grid, Typography, Button } from "@material-ui/core";
 import React, { useState } from "react";
 import { questions } from "./Questions";
+import globalUseStyles from "../../../GlobalStyle";
 import Faq from "./Faq";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: "white",
         paddingTop: theme.spacing(4),
-        paddingLeft: theme.spacing(15),
-        paddingRight: theme.spacing(15),
         paddingBottom: theme.spacing(4),
         display: "flex",
         flexDirection: "column",
@@ -53,9 +52,10 @@ const Doubts = (props) => {
     const [data, setData] = useState(questions);
 
     const classes = useStyles();
+    const globalClasses = globalUseStyles();
 
     return (
-        <section className={classes.root}>
+        <section className={`${globalClasses.toolbarMargin} ${classes.root}`}>
             <Typography variant="h2" className={classes.title}>
                 Still have doubts?
             </Typography>

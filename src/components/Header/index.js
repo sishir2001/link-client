@@ -3,7 +3,7 @@ import { AppBar, makeStyles, Toolbar, Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import LoggedOutOptions from "./LoggedOutOptions";
 import LoggedInOptions from "./LoggedInOptions";
-import { useHistory } from "react-router-dom";
+import globalUseStyles from "../../GlobalStyle";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = (props) => {
     const classes = useStyles();
+    const globalClasses = globalUseStyles();
+
     const { isLoggedIn } = useSelector((state) => state.auth);
 
     const renderRightHeaderOptions = () => {
@@ -42,7 +44,7 @@ const Header = (props) => {
     return (
         <div>
             <AppBar className={classes.root} elevation={0}>
-                <Toolbar>
+                <Toolbar className={globalClasses.toolbarMargin}>
                     <div className={classes.left}>
                         <Typography variant="h4" className={classes.title}>
                             link.
