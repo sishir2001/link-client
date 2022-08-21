@@ -3,6 +3,8 @@ import React, { useRef } from "react";
 import Members from "./Members/index";
 import About from "./About";
 import Home from "./Home";
+import Footer from "./Footer";
+import Doubts from "./Doubts/Doubts";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,6 +20,8 @@ const Landing = (props) => {
         <div>
             <Home scrollRef={scrollRef} />
             <About scrollRef={scrollRef} />
+            <Doubts/>
+            <Footer/>
             <Members />
         </div>
     );

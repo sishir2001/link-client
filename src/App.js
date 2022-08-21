@@ -1,3 +1,4 @@
+import React from "react";
 import {
     Container,
     createTheme,
@@ -7,6 +8,7 @@ import {
 import Header from "./components/Header";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Landing from "./components/Landing";
+import Profile from "./components/Profile";
 
 const theme = createTheme({
     typography: {
@@ -79,6 +81,9 @@ function App() {
                 <Switch>
                     <Route exact path="/">
                         <Landing />
+                    </Route>
+                    <Route exact path="/dashboard">
+                        <Profile/>
                     </Route>
                 </Switch>
             </Router>
