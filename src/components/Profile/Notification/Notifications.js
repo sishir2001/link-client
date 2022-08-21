@@ -1,23 +1,16 @@
 import { makeStyles, Grid, Typography} from "@material-ui/core";
 import React, { useState } from "react";
-import {notifications} from "./NotificationList";
+import {notifications} from "../NotificationLists/NotificationList";
 import Notification from "./NotificationSection";
 import Tick from "../../../svgs/tick.svg"
 
 const useStyles = makeStyles((theme) => ({
     section: {
-        backgroundColor:"#F7F8FC",
         marginTop: 100,
-        paddingLeft: theme.spacing(4),
-        paddingRight: theme.spacing(4),
-        paddingBottom: theme.spacing(2),
         margin:"auto",
         marginBottom: 40,
         display: "flex",
         flexDirection: "column",
-        border: "1px solid black",
-        borderRadius: 10,
-        width: 1000,
     },
     grid: {
         paddingTop: theme.spacing(5),
@@ -32,7 +25,8 @@ const useStyles = makeStyles((theme) => ({
     grid1: {
         display: "flex",
         alignItems: "center",
-        justifyContent: "right"
+        justifyContent: "right",
+        cursor: "pointer",
     },
     sub:{
         color: "black",
@@ -69,7 +63,11 @@ const Notifications = (props) => {
                 </Grid>
             </Grid>
 
-            {data.map(({id,ideaId,info,time})=> <Notification key={id} idea={ideaId} info={info} time={time} />)}
+            {data.map (({id,design,name,ideaId,psID,info,time}) => {
+                return(
+                    <Notification key={id} idea={ideaId} info={info} time={time} design={design} name={name} psID={psID}/>
+                )
+            })}
 
         </section>
         

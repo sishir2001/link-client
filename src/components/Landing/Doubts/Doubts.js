@@ -42,7 +42,14 @@ const useStyles = makeStyles((theme) => ({
     button: {
         filter: "drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.25))",
         color: "white",
-        background: "#217BF4"
+        background: "#217BF4",
+
+          '&:hover': {
+            backgroundColor: '#217BF4',
+            borderColor: '#0062cc',
+            color: "white",
+            boxShadow: 'none',
+          },
     },
 }));
 

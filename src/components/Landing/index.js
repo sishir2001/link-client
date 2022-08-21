@@ -20,9 +20,9 @@ const Landing = (props) => {
         <div>
             <Home scrollRef={scrollRef} />
             <About scrollRef={scrollRef} />
+            <Members />
             <Doubts/>
             <Footer/>
-            <Members />
         </div>
     );
 };
