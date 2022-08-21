@@ -40,9 +40,9 @@ const Home = ({ scrollRef }) => {
 
     const handleKnowMore = () => {
         console.log("Clicked on know more");
-        // scrollRef.current?.scrollIntoView({
-        //     behavior: "smooth",
-        // });
+        scrollRef.current?.scrollIntoView({
+            behavior: "smooth",
+        });
     };
     return (
         <div className={classes.root}>

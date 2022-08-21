@@ -1,6 +1,5 @@
+import React from "react";
 import { makeStyles } from "@material-ui/core";
-import React, { useRef } from "react";
-// import Notifications from "./Notification/Notifications";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -9,16 +8,13 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
 }));
 
-const Profile = (props) => {
+const Feed = (props) => {
     const classes = useStyles();
-    const scrollRef = useRef(null);
-
     return (
         <div>
             <div className={classes.toolbar}></div>
-            {/* <Notifications/> */}
-            Profile
+            <div>Feed</div>
         </div>
     );
 };
-export default Profile;
+export default Feed;

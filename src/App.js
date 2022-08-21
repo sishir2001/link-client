@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     Container,
     createTheme,
@@ -7,8 +7,10 @@ import {
 } from "@material-ui/core";
 import Header from "./components/Header";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-import Landing from "./components/Landing";
+import AuthCheck from "./components/Landing/index";
+import Landing from "./components/Landing/Landing";
 import Profile from "./components/Profile";
+import Feed from "./components/Feed";
 
 const theme = createTheme({
     typography: {
@@ -75,15 +77,21 @@ function App() {
     const classes = useStyles();
     return (
         <ThemeProvider theme={theme}>
-            <Header />
             {/* <div className={classes.toolbar}></div> */}
             <Router>
+                <Header />
                 <Switch>
                     <Route exact path="/">
+                        <AuthCheck />
+                    </Route>
+                    <Route exact path="/landing">
                         <Landing />
                     </Route>
-                    <Route exact path="/dashboard">
-                        <Profile/>
+                    <Route exact path="/feed">
+                        <Feed />
+                    </Route>
+                    <Route exact path="/profile">
+                        <Profile />
                     </Route>
                 </Switch>
             </Router>
