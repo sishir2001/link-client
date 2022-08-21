@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles, Typography, Paper, Link} from "@material-ui/core";
-import Dots from "../../../svgs/dots.svg"
+import Dots from "../../svgs/dots.svg"
+
 
 const useStyles = makeStyles((theme) => ({
     root: {

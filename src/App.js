@@ -8,7 +8,7 @@ import {
 import Header from "./components/Header";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Landing from "./components/Landing";
-import Profile from "./components/Profile";
+import Notifications from "./components/Notification/Notifications"
 
 const theme = createTheme({
     typography: {
@@ -82,8 +82,8 @@ function App() {
                     <Route exact path="/">
                         <Landing />
                     </Route>
-                    <Route exact path="/dashboard">
-                        <Profile/>
+                    <Route exact path="/notifications">
+                        <Notifications/>
                     </Route>
                 </Switch>
             </Router>

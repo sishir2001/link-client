@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
     username: null,
-    isLoggedIn: true,
+    isLoggedIn: false,
 };
 
 export const authReducer = (state = INITIAL_STATE, action) => {

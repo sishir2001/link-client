@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import React, { useRef } from "react";
-import Notifications from "./Notification/Notifications"
+import Notifications from "../Notification/Notifications"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,7 +14,7 @@ const Profile = (props) => {
 
     return (
         <div>
-            <Notifications/>
+            
         </div>
     );
 };

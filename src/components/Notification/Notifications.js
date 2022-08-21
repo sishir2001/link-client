@@ -1,8 +1,8 @@
 import { makeStyles, Grid, Typography} from "@material-ui/core";
 import React, { useState } from "react";
-import {notifications} from "../NotificationLists/NotificationList";
+import {notifications} from "./NotificationList";
 import Notification from "./NotificationSection";
-import Tick from "../../../svgs/tick.svg"
+import Tick from "../../svgs/tick.svg"
 
 const useStyles = makeStyles((theme) => ({
     section: {
