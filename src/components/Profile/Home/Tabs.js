@@ -6,7 +6,7 @@ import Tab from "@material-ui/core/Tab";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: "inherit",
     },
     tabsRoot: {
         borderBottom: "1px solid #e8e8e8",

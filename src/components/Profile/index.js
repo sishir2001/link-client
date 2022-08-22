@@ -8,7 +8,7 @@ import EditProfile from "./EditProfile";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        padding: theme.spacing(3),
+        background: "#F7F8FC",
     },
 }));
 
@@ -22,7 +22,7 @@ const Profile = (props) => {
     // });
 
     return (
-        <div className={`${globalClasses.toolbarMargin}`}>
+        <div className={`${globalClasses.toolbarMargin} ${classes.root}`}>
             <div className={globalClasses.toolbar}></div>
             {/* <Notifications/> */}
             <Switch>
