@@ -17,11 +17,17 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
     },
     nonMenu: {
-        [theme.breakpoints.down("md")]: {
+        [theme.breakpoints.up("xs")]: {
             display: "none",
+        },
+        [theme.breakpoints.up("md")]: {
+            display: "inherit",
         },
     },
     menu: {
+        [theme.breakpoints.up("xs")]: {
+            display: "inherit",
+        },
         [theme.breakpoints.up("md")]: {
             display: "none",
         },

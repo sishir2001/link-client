@@ -16,39 +16,84 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: theme.spacing(4),
     },
     avatar: {
-        [theme.breakpoints.up("sm")]: {
+        [theme.breakpoints.up("xs")]: {
+            width: theme.spacing(12),
+            height: theme.spacing(12),
+        },
+        [theme.breakpoints.up("md")]: {
+            width: theme.spacing(17),
+            height: theme.spacing(17),
+        },
+        [theme.breakpoints.up("lg")]: {
             width: theme.spacing(20),
             height: theme.spacing(20),
-        },
-        [theme.breakpoints.down("xs")]: {
-            width: theme.spacing(14),
-            height: theme.spacing(14),
         },
         background: "#3D3D3D",
     },
     infoRoot: {
         display: "flex",
-        justifyContent: "center",
+        [theme.breakpoints.up("xs")]: {
+            justifyContent: "flex-start",
+        },
+        [theme.breakpoints.up("lg")]: {
+            justifyContent: "center",
+        },
     },
     infoTypography: {
         paddingTop: theme.spacing(2),
         paddingLeft: theme.spacing(5),
+        // "& Button": {
+        //     [theme.breakpoints.up("md")]: {
+        //         size: "small",
+        //     },
+        //     [theme.breakpoints.up("lg")]: {
+        //         size: "large",
+        //     },
+        // },
     },
     infoName: {
         fontWeight: 600,
+        [theme.breakpoints.up("xs")]: {
+            fontSize: 20,
+        },
+        [theme.breakpoints.up("md")]: {
+            fontSize: 30,
+        },
+        [theme.breakpoints.up("lg")]: {
+            fontSize: 40,
+        },
     },
     infoRole: {
         fontWeight: theme.typography.fontWeightMedium,
+        [theme.breakpoints.up("xs")]: {
+            fontSize: 10,
+        },
+        [theme.breakpoints.up("md")]: {
+            fontSize: 20,
+        },
+        [theme.breakpoints.up("lg")]: {
+            fontSize: 25,
+        },
     },
     infoValidity: {
-        display: "flex",
+        [theme.breakpoints.up("xs")]: {
+            display: "inherit",
+        },
+        [theme.breakpoints.up("lg")]: {
+            display: "flex",
+        },
         paddingTop: theme.spacing(1),
         paddingBottom: theme.spacing(1),
     },
     infoTime: {
         fontWeight: 600,
         background: "#B6F5D7",
-        padding: theme.spacing(1),
+        [theme.breakpoints.up("xs")]: {
+            padding: "1px",
+        },
+        [theme.breakpoints.up("lg")]: {
+            padding: theme.spacing(1),
+        },
         borderRadius: 14,
     },
     infoRating: {
@@ -70,11 +115,11 @@ const Info = (props) => {
 
     const handleEditProfile = () => {
         console.log("Edit Profile clicked");
-        // history.push("/profile/edit");
+        history.push("/profile/edit");
     };
 
     return (
-        <div className={`${globalClasses.toolbarMargin} ${classes.root}`}>
+        <div className={`${classes.root}`}>
             {/* <Grid container justifyContent="center">
                 <Grid item xs={12}> */}
             <div className={classes.infoRoot}>
