@@ -110,18 +110,23 @@ const useStyles = makeStyles((theme) => ({
 const Signin = (props) => {
     const classes = useStyles();
     const preventDefault = (event) => event.preventDefault();
+    
     const [values, setValues] = React.useState({
+        username: '',
         password: '',
         showPassword: false,
-      });
+    });
+    const handleUsername = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
     const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+        setValues({ ...values, [prop]: event.target.value });
     };
     const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
+        setValues({ ...values, showPassword: !values.showPassword });
     };
     const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+        event.preventDefault();
     };
 
     return (
@@ -139,11 +144,15 @@ const Signin = (props) => {
                         </Typography>
                         <img className={classes.img1} src={Dot} alt='dot'/>
                     </div>
-                    <form noValidate autoComplete="off" className={classes.form}>
-                        <TextField id="standard-basic" label="Username" className={clsx(classes.margin, classes.textField)}/>
+                    <form autoComplete="off" className={classes.form}>
+                    <FormControl className={clsx(classes.margin, classes.textField)}>
+                            <InputLabel required>Username</InputLabel>
+                            <Input id="username" value={values.username} onChange={handleUsername('username')} required/>
+                        </FormControl>
                         <FormControl className={clsx(classes.margin, classes.textField)}>
-                            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                            <InputLabel htmlFor="standard-adornment-password" required>Password</InputLabel>
                             <Input
+                                required
                                 id="standard-adornment-password"
                                 type={values.showPassword ? 'text' : 'password'}
                                 value={values.password}
@@ -161,7 +170,7 @@ const Signin = (props) => {
                                 }
                             />
                         </FormControl>
-                        <Button className={classes.button} variant="contained" style={{ borderRadius: 50}}>
+                        <Button type="submit" className={classes.button} variant="contained" style={{ borderRadius: 50}}>
                             Signin
                         </Button>
                     </form>

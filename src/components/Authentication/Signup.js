@@ -89,7 +89,8 @@ const useStyles = makeStyles((theme) => ({
         display:"flex",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: theme.spacing(3),
+        marginTop: theme.spacing(2),
+        paddingBottom: theme.spacing(1),
     },
     text:{
         fontFamily: 'Poppins',
@@ -111,22 +112,34 @@ const useStyles = makeStyles((theme) => ({
 const Signup = (props) => {
     const classes = useStyles();
     const preventDefault = (event) => event.preventDefault();
-    const [password, setPassword] = useState("")
-    const [passwordAgain, setPasswordAgain] = useState("")
+    // const [password, setPassword] = useState("")
+    // const [passwordAgain, setPasswordAgain] = useState("")
 
-    const [values, setValues] = React.useState({
+    const [values, setValues] = useState({
+        username: '',
+        email: '',
         password: '',
         passwordAgain: '',
         showPassword: false,
         showPasswordAgain: false
     });
+    const [checks, setchecks] = useState({
+        capsLetterCheck: false,
+        numberCheck: false,
+        pwdLengthCheck: false,
+        specialCharCheck: false,
+    });
+    const handleUsername = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
+    const handleEmail = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
-        setPassword(event.target.value);
     };
     const handleChangeAgain = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
-        setPasswordAgain(event.target.value);
     };
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
@@ -137,7 +150,55 @@ const Signup = (props) => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-
+    const handleOnKeyUp = (event) => {
+        const {value} = event.target;
+        const capsLetterCheck = /[A-Z]/.test(value);
+        const numberCheck = /[0-9]/.test(value);
+        const pwdLengthCheck = value.length >5;
+        const specialCharCheck = /[!@#$%^&*]/.test(value);
+        setchecks({
+            capsLetterCheck,
+            numberCheck,
+            pwdLengthCheck,
+            specialCharCheck,
+        })
+    };
+    const saveFormData = async (event) => {
+        let formdata = new FormData();
+        formdata.append('username', values.username);
+        formdata.append('password', values.password);
+        formdata.append('email', values.email);
+        console.log(formdata);
+        // const data = {
+        //     username: values.username,
+        //     password: values.password,
+        //     email: values.email
+        // }
+        if(values.password === values.passwordAgain){
+            const response = await fetch('https://theprojectlink.herokuapp.com/auth/signup', {
+                method: 'POST',
+                body: formdata,
+            });
+            console.log(response);
+            if (response.status !== 200) {
+                throw new Error(`Request failed: ${response.status}`); 
+            }else{
+                alert('Your registration was successfully submitted!');
+            }
+        }
+        else{
+            alert('password and confirm password do not match');
+        }
+        
+    };
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            await saveFormData();
+        } catch (e) {
+            alert(`Registration failed! ${e.message}`);
+        }
+    };
     return (
         
         <div className={classes.root}>
@@ -153,16 +214,24 @@ const Signup = (props) => {
                         </Typography>
                         <img className={classes.img1} src={Dot} alt='dot'/>
                     </div>
-                    <form noValidate autoComplete="off" className={classes.form}>
-                        <TextField id="standard-basic" label="Username" className={clsx(classes.margin, classes.textField)}/>
-                        <TextField id="standard-basic" label="Email" className={clsx(classes.margin, classes.textField)}/>
+                    <form onSubmit={onSubmit} autoComplete="off" className={classes.form}>
                         <FormControl className={clsx(classes.margin, classes.textField)}>
-                            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                            <InputLabel required>Username</InputLabel>
+                            <Input id="username" value={values.username} onChange={handleUsername('username')} required/>
+                        </FormControl>
+                        <FormControl className={clsx(classes.margin, classes.textField)}>
+                            <InputLabel required>Email</InputLabel>
+                            <Input id="email" type = "email" value={values.email} onChange={handleEmail('email')} required/>
+                        </FormControl>
+                        <FormControl className={clsx(classes.margin, classes.textField)}>
+                            <InputLabel htmlFor="standard-adornment-password" required>Password</InputLabel>
                             <Input
-                                id="standard-adornment-password"
+                                required
+                                id="password"
                                 type={values.showPassword ? 'text' : 'password'}
                                 value={values.password}
-                                onChange={handleChange('password') }
+                                onChange={handleChange('password')}
+                                onKeyUp={handleOnKeyUp}
                                 endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
@@ -177,9 +246,10 @@ const Signup = (props) => {
                             />
                         </FormControl>
                         <FormControl className={clsx(classes.margin, classes.textField)}>
-                            <InputLabel htmlFor="standard-adornment-password">Confirm Password</InputLabel>
+                            <InputLabel htmlFor="standard-adornment-password" required>Confirm Password</InputLabel>
                             <Input
-                                id="standard-adornment-password"
+                                required
+                                id="confirmpassword"
                                 type={values.showPasswordAgain ? 'text' : 'password'}
                                 value={values.passwordAgain}
                                 onChange={handleChangeAgain('passwordAgain')}
@@ -198,12 +268,12 @@ const Signup = (props) => {
                         </FormControl>
                         <PasswordChecklist
                             rules={["minLength","specialChar","number","capital","match"]}
-                            minLength={5}
-                            value={password}
-                            valueAgain={passwordAgain}
+                            minLength={6}
+                            value={values.password}
+                            valueAgain={values.passwordAgain}
                             onChange={(isValid) => {}}
                         />
-                        <Button className={classes.button} variant="contained" style={{ borderRadius: 50}}>
+                        <Button type="submit" className={classes.button} variant="contained" style={{ borderRadius: 50}}>
                             Sign Up
                         </Button>
                     </form>
