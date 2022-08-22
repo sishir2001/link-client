@@ -17,12 +17,15 @@ const theme = createTheme({
         fontFamily: ["Roboto", "Poppins", "Lora"].join(","),
         h1: {
             fontFamily: '"Poppins",Roboto',
+            color: "white",
         },
         h2: {
             fontFamily: '"Poppins",Roboto',
+            color: "white",
         },
         h3: {
             fontFamily: '"Poppins",Roboto',
+            color: "white",
         },
         h4: {
             fontFamily: '"Poppins",Roboto',
@@ -41,6 +44,7 @@ const theme = createTheme({
         },
         body1: {
             fontFamily: '"Lora",Roboto',
+            color: "white",
         },
         body2: {
             fontFamily: '"Lora",Roboto',

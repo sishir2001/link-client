@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
     motto: {
         fontFamily: "Lora",
+        color: "white",
     },
     playSVG: {
         marginLeft: -60,

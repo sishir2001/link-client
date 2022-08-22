@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
     username: null,
-    isLoggedIn: true,
+    isLoggedIn: false,
     name: "Ankur Warikoo",
     role: "investor",
     twitterId: "@warikoo",
