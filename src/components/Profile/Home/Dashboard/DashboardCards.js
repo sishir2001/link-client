@@ -137,6 +137,10 @@ const DashboardCards = (props) => {
     };
     useEffect(() => {
         // fetch the details from endpoint according to the role
+        setInvestments(30);
+        setAmount(20000);
+        setReqRecieved(3);
+        setFeedBackPending(10);
     });
     const renderValues = (value) => {
         if (value !== null) {

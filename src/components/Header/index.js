@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: "Lekton",
         fontSize: theme.spacing(6),
         fontWeight: 500,
+        color: "white",
     },
     appBarBtn: {
         marginLeft: theme.spacing(1),
