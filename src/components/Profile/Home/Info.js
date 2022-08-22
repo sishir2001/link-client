@@ -106,7 +106,7 @@ const Info = (props) => {
     const history = useHistory();
     const { auth } = useSelector((state) => state);
     const [rating, setRating] = useState(4);
-    const [investments, setInvestments] = useState(20);
+    const [time, setTime] = useState(20);
     const globalClasses = globalUseStyles();
 
     useEffect(() => {
@@ -116,6 +116,32 @@ const Info = (props) => {
     const handleEditProfile = () => {
         console.log("Edit Profile clicked");
         history.push("/profile/edit");
+    };
+
+    const renderInfoTime = () => {
+        if (auth.role === "investor") {
+            return `${time}+ Investments`;
+        } else if (auth.role === "mentor") {
+            return `${time}+ Sessions`;
+        }
+    };
+
+    const renderInfoValidity = () => {
+        if (auth.role === "investor" || auth.role === "mentor") {
+            return (
+                <div className={classes.infoValidity}>
+                    <Typography variant="body1" className={classes.infoTime}>
+                        {renderInfoTime()}
+                    </Typography>
+                    <Rating
+                        className={classes.infoRating}
+                        name="read-only"
+                        value={rating}
+                        readOnly
+                    />
+                </div>
+            );
+        }
     };
 
     return (
@@ -129,22 +155,11 @@ const Info = (props) => {
                         {auth.name}
                     </Typography>
                     <Typography variant="h5" className={classes.infoRole}>
-                        {auth.role}
+                        {`${auth.role[0].toUpperCase()}${auth.role.substring(
+                            1
+                        )}`}
                     </Typography>
-                    <div className={classes.infoValidity}>
-                        <Typography
-                            variant="body1"
-                            className={classes.infoTime}
-                        >
-                            {investments}+ Investments
-                        </Typography>
-                        <Rating
-                            className={classes.infoRating}
-                            name="read-only"
-                            value={rating}
-                            readOnly
-                        />
-                    </div>
+                    {renderInfoValidity()}
                 </div>
                 <div className={classes.infoTypography}>
                     <Button onClick={handleEditProfile} variant="outlined">

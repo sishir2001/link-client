@@ -2,7 +2,7 @@ const INITIAL_STATE = {
     username: null,
     isLoggedIn: true,
     name: "Ankur Warikoo",
-    role: "Investor",
+    role: "mentor",
     twitterId: "@warikoo",
 };
 
