@@ -82,7 +82,7 @@ function App() {
                 <div>
                     <Switch>
                         <Route exact path="/">
-                            <AuthCheck  />
+                            <AuthCheck />
                         </Route>
                         <Route exact path="/landing">
                             <Landing />
@@ -90,7 +90,7 @@ function App() {
                         <Route exact path="/feed">
                             <Feed />
                         </Route>
-                        <Route exact path="/profile">
+                        <Route path="/profile">
                             <Profile />
                         </Route>
                     </Switch>
