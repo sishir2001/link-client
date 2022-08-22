@@ -14,26 +14,27 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "column",
     },
     grid: {
-        paddingTop: theme.spacing(7),
+        paddingTop: theme.spacing(5),
         color: "white",
+        paddingBottom: theme.spacing(2),
     },
     title: {
         fontFamily: "Poppins",
-        fontSize: 35,
+        fontSize: "2.125rem",
         fontWeight: 700,
         textAlign: "center",
     },
     faq: {
         fontFamily: "Poppins",
         color: "Black",
-        fontSize: 30,
+        fontSize: "1.5rem",
         fontWeight: 600,
         paddingRight: 22,
     },
     sub:{
         color: "#000000",
         fontWeight: 400,
-        fontSize: 20,
+        fontSize: "1.125rem",
         fontFamily: "Lora",
         fontStyle: "normal",
         paddingTop: 10,
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
         filter: "drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.25))",
         color: "white",
         background: "#217BF4",
-
+        textTransform: "initial",
           '&:hover': {
             backgroundColor: '#217BF4',
             borderColor: '#0062cc',
@@ -77,9 +78,9 @@ const Doubts = (props) => {
                     </Typography>
                 </Grid>
                 <Grid item xs={0.5}>
-                <Button className={classes.button} variant="contained" style={{ borderRadius: 50 }}>
-                    View All
-                </Button>
+                    <Button className={classes.button} variant="contained" style={{ borderRadius: 50 }}>
+                        View All
+                    </Button>
                 </Grid>
             </Grid>
             

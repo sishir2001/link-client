@@ -9,6 +9,8 @@ import Header from "./components/Header";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Landing from "./components/Landing";
 import Notifications from "./components/Notification/Notifications"
+import Signup from "./components/Authentication/Signup"
+import Signin from "./components/Authentication/Signin"
 
 const theme = createTheme({
     typography: {
@@ -84,6 +86,12 @@ function App() {
                     </Route>
                     <Route exact path="/notifications">
                         <Notifications/>
+                    </Route>
+                    <Route exact path="/signup">
+                        <Signup/>
+                    </Route>
+                    <Route exact path="/signin">
+                        <Signin/>
                     </Route>
                 </Switch>
             </Router>
