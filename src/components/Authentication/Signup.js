@@ -179,6 +179,9 @@ const Signup = (props) => {
         console.log("email", values.email);
 
         const formdata = new FormData();
+        formdata.append("username", values.username);
+        formdata.append("email", values.email);
+        formdata.append("password", values.password);
         if (
             checks.capsLetterCheck === true &&
             checks.numberCheck === true &&
@@ -198,8 +201,9 @@ const Signup = (props) => {
                     console.log(res_json);
                     if (!res_json.response) {
                         throw new Error(`Request failed: ${res_json.message}`);
+                    } else {
+                        alert("Your registration was successfully submitted!");
                     }
-                    alert("Your registration was successfully submitted!");
                 } else {
                     alert(`Error ${response.status}`);
                 }
