@@ -1,27 +1,23 @@
-import { makeStyles } from "@material-ui/core";
-import React, { useRef } from "react";
-import About from "./About";
-import Home from "./Home";
-import Footer from "./Footer";
-import Doubts from "./Doubts/Doubts";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        padding: theme.spacing(3),
-    },
-}));
+const AuthCheck = (props) => {
+    const history = useHistory();
+    const { auth } = useSelector((state) => state);
+    const { isLoggedIn } = auth;
 
-const Landing = (props) => {
-    const classes = useStyles();
-    const scrollRef = useRef(null);
-
-    return (
-        <div>
-            <Home scrollRef={scrollRef} />
-            <About scrollRef={scrollRef} />
-            <Doubts/>
-            <Footer/>
-        </div>
-    );
+    // run only once when the components are mounted
+    useEffect(() => {
+        // check whether the user is signed in or not
+        if (isLoggedIn) {
+            history.push("/feed");
+        } else {
+            history.push("/landing");
+        }
+    }, []);
+    
+    // ! need buffering here
+    return <div></div>;
 };
-export default Landing;
+export default AuthCheck;

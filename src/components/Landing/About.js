@@ -6,6 +6,7 @@ import investorsSVG from "../../svgs/investors.svg";
 import mentorsSVG from "../../svgs/mentors.svg";
 import problemStatementSVG from "../../svgs/problemStatement.svg";
 import successStoriesSVG from "../../svgs/successStories.svg";
+import globalUseStyles from "../../GlobalStyle";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,8 +14,6 @@ const useStyles = makeStyles((theme) => ({
         height: `100vh`,
         color: "black",
         paddingTop: theme.spacing(4),
-        paddingLeft: theme.spacing(4),
-        paddingRight: theme.spacing(4),
     },
     heading: {
         fontWeight: theme.typography.fontWeightBold,
@@ -36,11 +35,11 @@ const useStyles = makeStyles((theme) => ({
             fontWeight: 600,
         },
     },
-    toolbar: theme.mixins.toolbar,
 }));
 
 const About = ({ scrollRef }) => {
     const classes = useStyles();
+    const globalClasses = globalUseStyles();
     const headingText = "What is this platform all about?";
 
     const gridList = [
@@ -83,9 +82,9 @@ const About = ({ scrollRef }) => {
     ];
 
     return (
-        <div className={classes.root}>
+        <div className={`${globalClasses.toolbarMargin} ${classes.root}`}>
             {/* Heading */}
-            <div className={classes.toolbar}></div>
+            <div className={globalClasses.toolbar}></div>
             <Typography
                 ref={scrollRef}
                 variant="h4"

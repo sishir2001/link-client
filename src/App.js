@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     Container,
     createTheme,
@@ -7,16 +7,22 @@ import {
 } from "@material-ui/core";
 import Header from "./components/Header";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-import Landing from "./components/Landing";
+import AuthCheck from "./components/Landing/index";
+import Landing from "./components/Landing/Landing";
+import Profile from "./components/Profile";
+import Feed from "./components/Feed";
+import IdeaForm from "./components/IdeaForm";
 
 const theme = createTheme({
     typography: {
         fontFamily: ["Roboto", "Poppins", "Lora"].join(","),
         h1: {
             fontFamily: '"Poppins",Roboto',
+            color: "white",
         },
         h2: {
             fontFamily: '"Poppins",Roboto',
+            color: "white",
         },
         h3: {
             fontFamily: '"Poppins",Roboto',
@@ -74,14 +80,27 @@ function App() {
     const classes = useStyles();
     return (
         <ThemeProvider theme={theme}>
-            <Header />
-            {/* <div className={classes.toolbar}></div> */}
             <Router>
-                <Switch>
-                    <Route exact path="/">
-                        <Landing />
-                    </Route>
-                </Switch>
+                <Header />
+                <div>
+                    <Switch>
+                        <Route exact path="/">
+                            <AuthCheck />
+                        </Route>
+                        <Route exact path="/landing">
+                            <Landing />
+                        </Route>
+                        <Route exact path="/feed">
+                            <Feed />
+                        </Route>
+                        <Route path="/profile">
+                            <Profile />
+                        </Route>
+                        <Route path="/ideaform">
+                            <IdeaForm />
+                        </Route>
+                    </Switch>
+                </div>
             </Router>
         </ThemeProvider>
     );
