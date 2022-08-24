@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core";
 import React, { useRef } from "react";
 import { useEffect } from "react";
 import { useRouteMatch, Switch, Route } from "react-router-dom";
-import globalUseStyles from "../../GlobalStyle";
+import globalUseStyles from ".../../GlobalStyle";
 import Home from "./Home";
 import EditProfile from "./EditProfile";
 
