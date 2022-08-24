@@ -1,10 +1,5 @@
 import React, { useEffect } from "react";
-import {
-    Container,
-    createTheme,
-    makeStyles,
-    ThemeProvider,
-} from "@material-ui/core";
+import { createTheme, makeStyles, ThemeProvider } from "@material-ui/core";
 import Header from "./components/Header";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import AuthCheck from "./components/Landing/index";
@@ -12,10 +7,9 @@ import Landing from "./components/Landing/Landing";
 import Notifications from "./components/Notification/Notifications";
 import Signup from "./components/Authentication/Signup";
 import Signin from "./components/Authentication/Signin";
-import Home from "./components/Feed/Home";
 import Feed from "./components/Feed";
 import IdeaForm from "./components/IdeaForm";
-
+import Profile from "./components/Profile";
 const theme = createTheme({
     typography: {
         fontFamily: ["Roboto", "Poppins", "Lora"].join(","),
@@ -101,6 +95,15 @@ function App() {
                         </Route>
                         <Route path="/ideaform">
                             <IdeaForm />
+                        </Route>
+                        <Route exact path="/signup">
+                            <Signup />
+                        </Route>
+                        <Route exact path="/signin">
+                            <Signin />
+                        </Route>
+                        <Route exact path="/notifications">
+                            <Notifications />
                         </Route>
                     </Switch>
                 </div>

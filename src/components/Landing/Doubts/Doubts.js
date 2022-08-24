@@ -42,14 +42,15 @@ const useStyles = makeStyles((theme) => ({
     button: {
         filter: "drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.25))",
         color: "white",
-        width: '7vw',
+        width: "7vw",
         background: "linear-gradient(105.5deg, #EE5060 19.57%, #B25A59 78.85%)",
         textTransform: "initial",
-          '&:hover': {
-            backgroundColor: "linear-gradient(105.5deg, #EE5060 19.57%, #B25A59 78.85%)",
+        "&:hover": {
+            backgroundColor:
+                "linear-gradient(105.5deg, #EE5060 19.57%, #B25A59 78.85%)",
             color: "white",
-            boxShadow: 'none',
-          },,
+            boxShadow: "none",
+        },
     },
 }));
 
@@ -77,13 +78,13 @@ const Doubts = (props) => {
                     </Typography>
                 </Grid>
                 <Grid item xs={1}>
-                        <Button
+                    <Button
                         className={classes.button}
                         variant="contained"
                         style={{ borderRadius: 50 }}
                     >
-                            View All
-                        </Button>
+                        View All
+                    </Button>
                 </Grid>
             </Grid>
 
