@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import PasswordChecklist from "react-password-checklist";
 import clsx from "clsx";
-import {
-    makeStyles,
-    Grid,
-    Typography,
-    Button,
-    Link,
-} from "@material-ui/core";
+import { makeStyles, Grid, Typography, Button, Link } from "@material-ui/core";
 import {
     Input,
     InputLabel,
@@ -185,7 +179,12 @@ const Signup = (props) => {
         console.log("email", values.email);
 
         const formdata = new FormData();
-        if(checks.capsLetterCheck===true && checks.numberCheck===true && checks.pwdLengthCheck===true && checks.specialCharCheck===true){
+        if (
+            checks.capsLetterCheck === true &&
+            checks.numberCheck === true &&
+            checks.pwdLengthCheck === true &&
+            checks.specialCharCheck === true
+        ) {
             if (values.password === values.passwordAgain) {
                 const response = await fetch(
                     "https://theprojectlink.herokuapp.com/auth/signup",
@@ -194,12 +193,15 @@ const Signup = (props) => {
                         body: formdata,
                     }
                 );
-                console.log(response);
-
-                if (response.status !== 200) {
-                    throw new Error(`Request failed: ${response.status}`);
-                } else {
+                if (response.ok) {
+                    const res_json = await response.json();
+                    console.log(res_json);
+                    if (!res_json.response) {
+                        throw new Error(`Request failed: ${res_json.message}`);
+                    }
                     alert("Your registration was successfully submitted!");
+                } else {
+                    alert(`Error ${response.status}`);
                 }
             } else {
                 alert("password and confirm password do not match");
