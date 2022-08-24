@@ -16,7 +16,7 @@ const AuthCheck = (props) => {
             history.push("/landing");
         }
     }, []);
-    
+
     // ! need buffering here
     return <div></div>;
 };

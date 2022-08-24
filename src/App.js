@@ -10,7 +10,6 @@ import Signin from "./components/Authentication/Signin";
 import Feed from "./components/Feed";
 import IdeaForm from "./components/IdeaForm";
 import Profile from "./components/Profile";
-
 const theme = createTheme({
     typography: {
         fontFamily: ["Roboto", "Poppins", "Lora"].join(","),

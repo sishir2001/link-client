@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
     button: {
         color: "white",
         background: "linear-gradient(105.5deg, #EE5060 19.57%, #B25A59 78.85%)",
+        textTransform: "initial",
     },
     textField: {
         color: "#F0C53E",

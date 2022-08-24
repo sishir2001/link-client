@@ -6,32 +6,35 @@ import Minus from "../../../svgs/minus.svg";
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor:"#ECECEC",
-        padding: theme.spacing(2),
+        padding: theme.spacing(1),
         borderRadius: 10,
         boxShadow: "7px 7px 5px rgba(27, 27, 27, 0.25)",
-        marginBottom: theme.spacing(4),
-        marginTop: theme.spacing(4),
+        marginBottom: theme.spacing(2),
+        marginTop: theme.spacing(1),
         display: "flex",
     },
     question: {
         fontFamily: "Poppins",
-        fontSize: 25,
+        fontSize: "1.25rem",
         fontWeight: 500,
+        marginTop: "2px",
     },
     answer: {
         fontWeight: 400,
-        fontSize: 22,
+        fontSize: "1rem",
         fontFamily: "Lora",
         fontStyle: "normal",
         textAlign: "justify",
+        marginTop: "0.5rem",
+        marginBottom: "0.5rem",
     },
     container: {
         paddingLeft: theme.spacing(3),
         paddingRight: theme.spacing(2),
     },
     img: {
-        width: 30,
-        height:30,
+        width: "1.5rem",
+        height:"1.5rem",
         cursor: "pointer",
         paddingLeft: theme.spacing(2),
         paddingTop: 5,
@@ -44,10 +47,8 @@ const Faq = ({ques,ans}) => {
 
     return ( 
         <div className={classes.root}>
-            <div>
-                <div onClick={() => setShow(!show)} >
-                    {show? <img className={classes.img} src={Minus} alt="minus"/> : <img className={classes.img} src={Plus} alt="plus"/>}
-                </div>
+            <div onClick={() => setShow(!show)} >
+                {show? <img className={classes.img} src={Minus} alt="minus"/> : <img className={classes.img} src={Plus} alt="plus"/>}
             </div>
             <div className= {classes.container}>
                 <div className= {classes.question}>{ques}</div>

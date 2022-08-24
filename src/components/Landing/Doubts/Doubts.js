@@ -13,35 +13,44 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "column",
     },
     grid: {
-        paddingTop: theme.spacing(7),
+        paddingTop: theme.spacing(5),
         color: "white",
+        paddingBottom: theme.spacing(2),
     },
     title: {
         fontFamily: "Poppins",
-        fontSize: 35,
+        fontSize: "2.125rem",
         fontWeight: 700,
         textAlign: "center",
     },
     faq: {
         fontFamily: "Poppins",
         color: "Black",
-        fontSize: 30,
+        fontSize: "1.5rem",
         fontWeight: 600,
         paddingRight: 22,
     },
     sub: {
         color: "#000000",
         fontWeight: 400,
-        fontSize: 20,
+        fontSize: "1.125rem",
         fontFamily: "Lora",
         fontStyle: "normal",
         paddingTop: 10,
         textAlign: "center",
     },
     button: {
-        filter: "drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.25))",
+        filter: "drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.25))",
         color: "white",
-        background: "#217BF4",
+        width: "7vw",
+        background: "linear-gradient(105.5deg, #EE5060 19.57%, #B25A59 78.85%)",
+        textTransform: "initial",
+        "&:hover": {
+            backgroundColor:
+                "linear-gradient(105.5deg, #EE5060 19.57%, #B25A59 78.85%)",
+            color: "white",
+            boxShadow: "none",
+        },
     },
 }));
 
