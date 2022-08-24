@@ -11,6 +11,7 @@ import AuthCheck from "./components/Landing/index";
 import Landing from "./components/Landing/Landing";
 import Profile from "./components/Profile";
 import Feed from "./components/Feed";
+import IdeaForm from "./components/IdeaForm";
 
 const theme = createTheme({
     typography: {
@@ -94,6 +95,9 @@ function App() {
                         </Route>
                         <Route path="/profile">
                             <Profile />
+                        </Route>
+                        <Route path="/ideaform">
+                            <IdeaForm />
                         </Route>
                     </Switch>
                 </div>
