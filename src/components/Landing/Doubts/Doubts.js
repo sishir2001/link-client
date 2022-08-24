@@ -41,13 +41,13 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "center",
     },
     button: {
-        filter: "drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.25))",
+        filter: "drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.25))",
         color: "white",
-        background: "#217BF4",
+        width: '7vw',
+        background: "linear-gradient(105.5deg, #EE5060 19.57%, #B25A59 78.85%)",
         textTransform: "initial",
           '&:hover': {
-            backgroundColor: '#217BF4',
-            borderColor: '#0062cc',
+            backgroundColor: "linear-gradient(105.5deg, #EE5060 19.57%, #B25A59 78.85%)",
             color: "white",
             boxShadow: 'none',
           },

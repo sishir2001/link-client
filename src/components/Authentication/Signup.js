@@ -5,7 +5,6 @@ import {
     makeStyles,
     Grid,
     Typography,
-    TextField,
     Button,
     Link,
 } from "@material-ui/core";
@@ -135,7 +134,6 @@ const Signup = (props) => {
         showPassword: false,
         showPasswordAgain: false,
     });
-    const [username, setUsername] = useState("sishir");
     const [checks, setchecks] = useState({
         capsLetterCheck: false,
         numberCheck: false,
@@ -187,23 +185,25 @@ const Signup = (props) => {
         console.log("email", values.email);
 
         const formdata = new FormData();
-        if (values.password === values.passwordAgain) {
-            const response = await fetch(
-                "https://theprojectlink.herokuapp.com/auth/signup",
-                {
-                    method: "POST",
-                    body: formdata,
-                }
-            );
-            console.log(response);
+        if(checks.capsLetterCheck===true && checks.numberCheck===true && checks.pwdLengthCheck===true && checks.specialCharCheck===true){
+            if (values.password === values.passwordAgain) {
+                const response = await fetch(
+                    "https://theprojectlink.herokuapp.com/auth/signup",
+                    {
+                        method: "POST",
+                        body: formdata,
+                    }
+                );
+                console.log(response);
 
-            if (response.status !== 200) {
-                throw new Error(`Request failed: ${response.status}`);
+                if (response.status !== 200) {
+                    throw new Error(`Request failed: ${response.status}`);
+                } else {
+                    alert("Your registration was successfully submitted!");
+                }
             } else {
-                alert("Your registration was successfully submitted!");
+                alert("password and confirm password do not match");
             }
-        } else {
-            alert("password and confirm password do not match");
         }
     };
 
