@@ -3,6 +3,7 @@ const INITIAL_STATE = {
     isLoggedIn: true,
     name: "Ankur Warikoo",
     role: "investor",
+    jwtToken: "",
     twitterId: "@warikoo",
 };
 

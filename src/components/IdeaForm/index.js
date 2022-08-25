@@ -45,16 +45,23 @@ const IdeaForm = (props) => {
     const globalClasses = globalUseStyles();
     const classes = useStyles();
     const [page, setPage] = useState(1);
+    const [filled, setFilled] = useState([false, false, false, false]);
     const onChange = (pageNo) => {
-        setPage(pageNo);
+        console.log(`Current Page : ${page} , requestedPage : ${pageNo}`);
+        if (pageNo === 1 || filled[pageNo - 1] === true) {
+            setPage(pageNo);
+        } else {
+            alert("Fill the current page first");
+            setPage(page);
+        }
     };
 
     const formBodyList = [
-        <FormOne />,
-        <FormTwo />,
-        <FormThree />,
-        <FormFour />,
-        <FormFive />,
+        <FormOne filled={filled} setFilled={setFilled} />,
+        <FormTwo filled={filled} setFilled={setFilled} />,
+        <FormThree filled={filled} setFilled={setFilled} />,
+        <FormFour filled={filled} setFilled={setFilled} />,
+        <FormFive filled={filled} setFilled={setFilled} />,
     ];
     const renderIdeaFormHeader = () => {
         return (
@@ -67,7 +74,6 @@ const IdeaForm = (props) => {
                     </Typography>
                 </div>
                 <Pagination
-                    size="large"
                     onChange={onChange}
                     defaultCurrent={1}
                     className={classes.pagination}
