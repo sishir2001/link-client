@@ -230,7 +230,7 @@ const FormThree = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // send the page to next
-        setPage(3);
+        setPage(4);
     };
 
     const renderForm1 = () => {
