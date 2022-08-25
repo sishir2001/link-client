@@ -111,19 +111,28 @@ const FormThree = (props) => {
                     two_idea_methodology: data.two_idea_methodology,
                     two_idea_additionals: data.two_idea_additionals,
                 });
+                return true;
             }
+            return false;
         } catch (e) {
             console.log("Error Fetching Form Details : ", e);
             setFailFetchSnackBar(true);
+            return false;
         }
     };
 
     useEffect(() => {
         setIdeaContentId(localStorage.getItem("ideaContentId"));
         if (ideaContentId !== null) {
-            console.log(ideaContentId);
-            fetchFormDetails();
-            handleSavedData();
+            const check = fetchFormDetails();
+            // using promise
+            check.then((res, err) => {
+                if (!err) {
+                    if (res === true) {
+                        handleSavedData();
+                    }
+                }
+            });
         }
     }, [ideaContentId]);
 

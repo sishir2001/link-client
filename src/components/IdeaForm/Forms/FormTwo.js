@@ -92,6 +92,7 @@ const FormTwo = (props) => {
             const resJson = await res.json();
             const { data } = resJson;
             console.log(resJson);
+            console.log(data);
             if (data !== undefined) {
                 setFormData({
                     ...formData,
@@ -106,19 +107,28 @@ const FormTwo = (props) => {
                     one_problem_beginning: data.one_problem_beginning,
                     one_problem_need: data.one_problem_need,
                 });
+                return true;
             }
+            return false;
         } catch (e) {
             console.log("Error Fetching Form Details : ", e);
             setFailFetchSnackBar(true);
+            return false;
         }
     };
 
     useEffect(() => {
         setIdeaContentId(localStorage.getItem("ideaContentId"));
+        console.log(ideaContentId);
         if (ideaContentId !== null) {
-            console.log(ideaContentId);
-            fetchFormDetails();
-            handleSavedData();
+            const check = fetchFormDetails();
+            check.then((res, err) => {
+                if (!err) {
+                    if (res === true) {
+                        handleSavedData();
+                    }
+                }
+            });
         }
     }, [ideaContentId]);
 
