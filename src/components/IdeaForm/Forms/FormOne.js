@@ -88,6 +88,7 @@ const FormOne = (props) => {
     useEffect(() => {
         // getItem from localStorage
         setIdeaContentId(localStorage.getItem("ideaContentId"));
+        console.log(ideaContentId);
         if (ideaContentId !== null) {
             fetchFormDetails();
         }
@@ -113,6 +114,7 @@ const FormOne = (props) => {
                 setIdeaContentId(resJson.ideaContentId);
             } else {
                 console.log(resJson);
+                setFailSaveSnackBar(true);
             }
             console.log(resJson);
         } catch (e) {
@@ -144,6 +146,7 @@ const FormOne = (props) => {
 
             // TODO: call the api endpoint
             saveOnAPI();
+            console.log(localStorage.getItem("ideaContentId"));
         }
     };
 

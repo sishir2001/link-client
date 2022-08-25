@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     name: "Ankur Warikoo",
     role: "investor",
     jwtToken:
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYxNTAyMzU5LCJpYXQiOjE2NjE0MTU5NTksImp0aSI6Ijk1YjYzOTdiNmM0ZDQ5ZTlhOTJmZGE0OGYwOGU2OGZmIiwidXNlcl9pZCI6Mn0.RcvGmXYzYGwIXnhqBZSr-hXYgHlPRZ5JYmMJMCmKQsA",
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYxNTI1OTU1LCJpYXQiOjE2NjE0Mzk1NTUsImp0aSI6ImMzYzU1YWI5MTcwMDQ3MDhhMjM2ZjI5OWE0ODJjYjQ0IiwidXNlcl9pZCI6Mn0.DYeFr9RHHM3VhqWENjSRgvp1ggZHDtat9umUWVRnK8o",
     twitterId: "@warikoo",
 };
 
