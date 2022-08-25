@@ -4,6 +4,11 @@ import globalUseStyles from "../../GlobalStyle";
 import ideaBulbSVG from "../../svgs/ideaBulb.svg";
 import { Pagination } from "antd";
 import { useState } from "react";
+import FormOne from "./Forms/FormOne";
+import FormTwo from "./Forms/FormTwo";
+import FormThree from "./Forms/FormThree";
+import FormFour from "./Forms/FormFour";
+import FormFive from "./Forms/FormFive";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,6 +49,13 @@ const IdeaForm = (props) => {
         setPage(pageNo);
     };
 
+    const formBodyList = [
+        <FormOne />,
+        <FormTwo />,
+        <FormThree />,
+        <FormFour />,
+        <FormFive />,
+    ];
     const renderIdeaFormHeader = () => {
         return (
             <div className={classes.HeaderRoot}>
@@ -65,11 +77,16 @@ const IdeaForm = (props) => {
         );
     };
 
+    const renderFormBody = () => {
+        return formBodyList[page - 1];
+    };
+
     return (
         <div className={`${globalClasses.toolbarMargin} ${classes.root}`}>
             <div className={globalClasses.toolbar}></div>
             <div>{renderIdeaFormHeader()}</div>
             <Divider className={classes.divider} />
+            {renderFormBody()}
         </div>
     );
 };
