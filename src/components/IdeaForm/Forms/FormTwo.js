@@ -117,6 +117,7 @@ const FormTwo = (props) => {
         if (ideaContentId !== null) {
             console.log(ideaContentId);
             fetchFormDetails();
+            handleSavedData();
         }
     }, [ideaContentId]);
 
@@ -165,12 +166,20 @@ const FormTwo = (props) => {
                 setSuccessSnackBar(true);
             } else {
                 // ! add snackbar for error saving
-                // setFailSaveSnackBar(true);
+                setFailSaveSnackBar(true);
             }
         } catch (e) {
             console.log("error in post api ", e);
             setFailSaveSnackBar(true);
         }
+    };
+    const handleSavedData = () => {
+        // update the filled array
+        let aux = [...filled];
+        aux[2] = true;
+        setFilled(aux);
+        // set next as abled
+        setNextDisable(false);
     };
 
     const onSave = (e) => {
@@ -187,14 +196,11 @@ const FormTwo = (props) => {
             // ! add snackbar of error to fill the forms
             console.log("Fill the important details");
         }
-        // update the filled array
-        let aux = [...filled];
-        aux[2] = true;
-        setFilled(aux);
-        // set next as abled
-        setNextDisable(false);
-        // Save the details in api and in that save it to local
-        saveOnAPI();
+        if (ideaContentId === null) {
+            // Save the details in api and in that save it to local
+            saveOnAPI();
+        }
+        handleSavedData();
     };
 
     const handleClose = (snackBarType) => (event, reason) => {

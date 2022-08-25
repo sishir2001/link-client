@@ -91,6 +91,7 @@ const FormOne = (props) => {
         console.log(ideaContentId);
         if (ideaContentId !== null) {
             fetchFormDetails();
+            handledSavedData();
         }
     }, [ideaContentId]);
 
@@ -125,29 +126,34 @@ const FormOne = (props) => {
         }
     };
 
+    const handledSavedData = () => {
+        // TODO : able the next button
+        setNextDisable(false);
+        // TODO: update the filled array
+        let aux = [...filled];
+        aux[1] = true;
+        setFilled(aux);
+    };
+
     const onSave = (e) => {
         // call the api
         e.preventDefault();
-        if (value === "") {
-            setError(true);
-        } else {
-            // TODO : update setOwn to false if value is 2
-            if (value === "1") {
-                setOwn(true);
+        console.log(ideaContentId);
+        if (ideaContentId === null) {
+            if (value === "") {
+                setError(true);
+            } else {
+                // TODO : update setOwn to false if value is 2
+                if (value === "1") {
+                    setOwn(true);
+                }
+
+                // TODO: call the api endpoint
+                saveOnAPI();
+                console.log(localStorage.getItem("ideaContentId"));
             }
-
-            // TODO: update the filled array
-            let aux = [...filled];
-            aux[1] = true;
-            setFilled(aux);
-
-            // TODO : able the next button
-            setNextDisable(false);
-
-            // TODO: call the api endpoint
-            saveOnAPI();
-            console.log(localStorage.getItem("ideaContentId"));
         }
+        handledSavedData();
     };
 
     const handleSubmit = (e) => {
