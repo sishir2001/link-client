@@ -140,16 +140,6 @@ const FormTwo = (props) => {
         for (const key in formData) {
             formdata.append(key, formData[key]);
         }
-        // formData.append("one_problem_title",)
-        // : "",
-        // one_problem_shortdescription: "",
-        // one_problem_theme: "",
-        // one_problem_longdescription: "",
-        // one_problem_type: "",
-        // one_problem_domain: "",
-        // one_problem_need: "",
-        // one_problem_occurence: "",
-        // one_problem_beginning: "",
         try {
             const res = await fetch(
                 `${API}${endPoint}/1?ideaContentId=${ideaContentId}`,
@@ -173,6 +163,7 @@ const FormTwo = (props) => {
             setFailSaveSnackBar(true);
         }
     };
+
     const handleSavedData = () => {
         // update the filled array
         let aux = [...filled];
@@ -196,10 +187,8 @@ const FormTwo = (props) => {
             // ! add snackbar of error to fill the forms
             console.log("Fill the important details");
         }
-        if (ideaContentId === null) {
-            // Save the details in api and in that save it to local
-            saveOnAPI();
-        }
+        // Save the details in api and in that save it to local
+        saveOnAPI();
         handleSavedData();
     };
 

@@ -126,6 +126,38 @@ const FormOne = (props) => {
         }
     };
 
+    const updateOnAPI = async () => {
+        const formdata = new FormData();
+        formdata.append("main_problem_type", value);
+        try {
+            const res = await fetch(
+                `${API}${endPoint}/0?ideaContentId=${ideaContentId}`,
+                {
+                    method: "POST",
+                    body: formdata,
+                    headers: apiHeaders,
+                }
+            );
+            const resJson = await res.json();
+            if (resJson.response) {
+                // * add a snackbar for saving successful
+                setSuccessSnackBar(true);
+                // TODO : store the idea in localstorage
+                localStorage.setItem("ideaContentId", resJson.ideaContentId);
+                setIdeaContentId(resJson.ideaContentId);
+            } else {
+                console.log(resJson);
+                setFailSaveSnackBar(true);
+            }
+            console.log(resJson);
+        } catch (e) {
+            console.log(e);
+            // TODO : add snackbars here for error
+            setFailSaveSnackBar(true);
+            // Reason : couldnt save the data
+        }
+    };
+
     const handledSavedData = () => {
         // TODO : able the next button
         setNextDisable(false);
@@ -139,19 +171,21 @@ const FormOne = (props) => {
         // call the api
         e.preventDefault();
         console.log(ideaContentId);
-        if (ideaContentId === null) {
-            if (value === "") {
-                setError(true);
-            } else {
-                // TODO : update setOwn to false if value is 2
-                if (value === "1") {
-                    setOwn(true);
-                }
-
-                // TODO: call the api endpoint
-                saveOnAPI();
-                console.log(localStorage.getItem("ideaContentId"));
+        if (value === "") {
+            setError(true);
+        } else {
+            // TODO : update setOwn to false if value is 2
+            if (value === "1") {
+                setOwn(true);
             }
+
+            // TODO: call the api endpoint
+            if (ideaContentId === null) {
+                saveOnAPI();
+            } else {
+                updateOnAPI();
+            }
+            console.log(localStorage.getItem("ideaContentId"));
         }
         handledSavedData();
     };
