@@ -46,6 +46,9 @@ const IdeaForm = (props) => {
     const classes = useStyles();
     const [page, setPage] = useState(1);
     const [filled, setFilled] = useState([false, false, false, false]);
+    const [own, setOwn] = useState(false);
+    const endPoint = "/home/addIdea/page";
+
     const onChange = (pageNo) => {
         console.log(`Current Page : ${page} , requestedPage : ${pageNo}`);
         if (pageNo === 1 || filled[pageNo - 1] === true) {
@@ -57,13 +60,43 @@ const IdeaForm = (props) => {
     };
 
     const formBodyList = [
-        <FormOne filled={filled} setFilled={setFilled} />,
-        <FormTwo filled={filled} setFilled={setFilled} />,
-        <FormThree filled={filled} setFilled={setFilled} />,
-        <FormFour filled={filled} setFilled={setFilled} />,
-        <FormFive filled={filled} setFilled={setFilled} />,
+        <FormOne
+            filled={filled}
+            setFilled={setFilled}
+            setOwn={setOwn}
+            setPage={setPage}
+            endPoint={endPoint}
+        />,
+        <FormTwo
+            filled={filled}
+            setFilled={setFilled}
+            own={own}
+            endPoint={endPoint}
+            setPage={setPage}
+        />,
+        <FormThree
+            filled={filled}
+            setFilled={setFilled}
+            own={own}
+            setPage={setPage}
+            endPoint={endPoint}
+        />,
+        <FormFour
+            filled={filled}
+            setFilled={setFilled}
+            own={own}
+            setPage={setPage}
+            endPoint={endPoint}
+        />,
+        <FormFive
+            filled={filled}
+            setFilled={setFilled}
+            own={own}
+            endPoint={endPoint}
+        />,
     ];
     const renderIdeaFormHeader = () => {
+        // main form page
         return (
             <div className={classes.HeaderRoot}>
                 <div className={classes.leftHeader}>
@@ -75,7 +108,7 @@ const IdeaForm = (props) => {
                 </div>
                 <Pagination
                     onChange={onChange}
-                    defaultCurrent={1}
+                    defaultCurrent={page}
                     className={classes.pagination}
                     total={50}
                 />
