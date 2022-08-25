@@ -39,6 +39,8 @@ const FormTwo = (props) => {
         one_problem_type: "",
         one_problem_domain: "",
         one_problem_need: "",
+        one_problem_occurence: "",
+        one_problem_beginning: "",
     });
 
     const [probType, setProbType] = useState({
@@ -145,70 +147,80 @@ const FormTwo = (props) => {
                     className={classes.formControl}
                 >
                     <Typography variant="h6" className={classes.typo}>
-                        Title of the problem statement
+                        Domain problem belongs to
                         {renderAsterik()}
                     </Typography>
                     <Input
-                        id="one_problem_title"
-                        value={formData.one_problem_title}
-                        onChange={handleChange("one_problem_title", null)}
-                        label="prob_title"
+                        id="one_problem_domain"
+                        value={formData.one_problem_domain}
+                        onChange={handleChange("one_problem_domain", null)}
+                        label="prob_domain"
                     />
                 </FormControl>
                 <FormControl
                     color="primary"
                     fullWidth
-                    required={own}
                     className={classes.formControl}
                 >
                     <Typography variant="h6" className={classes.typo}>
-                        Short Description of Problem Statement
-                        {renderAsterik()}
+                        Background of the problem
                     </Typography>
                     <Input
-                        id="one_problem_shortdescription"
+                        id="one_problem_theme"
                         rows={4}
                         maxRows={4}
                         multiline
-                        value={formData.one_problem_shortdescription}
-                        onChange={handleChange(
-                            "one_problem_shortdescription",
-                            null
-                        )}
-                        label="prob_shordescription"
+                        value={formData.one_problem_theme}
+                        onChange={handleChange("one_problem_theme", null)}
+                        label="prob_theme"
                     />
                 </FormControl>
                 <FormControl
                     color="primary"
                     fullWidth
-                    required={own}
                     className={classes.formControl}
                 >
                     <Typography variant="h6" className={classes.typo}>
-                        Complete Description of the Problem
-                        {renderAsterik()}
+                        When did the problem begin
                     </Typography>
                     <Input
-                        id="one_problem_longdescription"
-                        rows={8}
-                        maxRows={8}
-                        multiline
-                        value={formData.one_problem_longdescription}
-                        onChange={handleChange(
-                            "one_problem_longdescription",
-                            null
-                        )}
-                        label="prob_completedescription"
+                        id="one_problem_domain"
+                        value={formData.one_problem_beginning}
+                        onChange={handleChange("one_problem_beginning", null)}
+                        label="prob_begining"
                     />
                 </FormControl>
-                {renderProblemType()}
+                <FormControl
+                    color="primary"
+                    fullWidth
+                    className={classes.formControl}
+                >
+                    <Typography variant="h6" className={classes.typo}>
+                        Is there a need in the market to solve the problem ?{" "}
+                        <br />
+                        Describe how crucial it is ?
+                    </Typography>
+                    <Input
+                        id="one_problem_occurence"
+                        rows={4}
+                        maxRows={4}
+                        multiline
+                        value={formData.one_problem_occurence}
+                        onChange={handleChange("one_problem_occurence", null)}
+                        label="prob_occurence"
+                    />
+                </FormControl>
             </>
         );
     };
 
     const renderProblemType = () => {
         return (
-            <FormControl component="fieldset" className={classes.formControl}>
+            <FormControl
+                component="fieldset"
+                className={classes.formControl}
+                required={own}
+            >
                 <Typography variant="h6" className={classes.typo}>
                     Type of Problem
                     {renderAsterik()}
@@ -282,7 +294,7 @@ const FormTwo = (props) => {
             <Grid
                 container
                 className={classes.root}
-                spacing={2}
+                spacing={10}
                 justifyContent="center"
             >
                 <Grid item xs={12} lg={6}>
