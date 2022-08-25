@@ -78,6 +78,7 @@ const FormTwo = (props) => {
     const [successSnackBar, setSuccessSnackBar] = useState(false);
     const [failSaveSnackBar, setFailSaveSnackBar] = useState(false);
     const [failFetchSnackBar, setFailFetchSnackBar] = useState(false);
+    const [failFillImpSnackBar, setFailFillImpSnackBar] = useState(false);
 
     const fetchFormDetails = async () => {
         try {
@@ -126,8 +127,9 @@ const FormTwo = (props) => {
             let res = "";
             if (formData.one_problem_type === "") {
                 res = formData.one_problem_type + checkBoxType;
+            } else {
+                res = formData.one_problem_type + "," + checkBoxType;
             }
-            res = formData.one_problem_type + "," + checkBoxType;
             setProbType({ ...probType, [checkBoxType]: true });
             setFormData({ ...formData, [type]: res });
         } else {
@@ -204,6 +206,9 @@ const FormTwo = (props) => {
         }
         if (snackBarType === "fail_save") {
             setFailSaveSnackBar(false);
+        }
+        if (snackBarType === "fail_fill_imp") {
+            setFailFillImpSnackBar(false);
         }
     };
 
@@ -420,7 +425,7 @@ const FormTwo = (props) => {
                                     "one_problem_type",
                                     "mvp"
                                 )}
-                                name="patented"
+                                name="mvp"
                             />
                         }
                         label="Minimum Viable Product"
@@ -512,6 +517,20 @@ const FormTwo = (props) => {
             >
                 <Alert onClose={handleClose("fail_fetch")} severity="error">
                     Failed to load the saved data !
+                </Alert>
+            </Snackbar>
+            {/* // ! error fill imp details */}
+            <Snackbar
+                open={failFillImpSnackBar}
+                autoHideDuration={6000}
+                anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "right",
+                }}
+                onClose={handleClose("fail_fill_imp")}
+            >
+                <Alert onClose={handleClose("fail_fill_imp")} severity="error">
+                    Fill all the important details !
                 </Alert>
             </Snackbar>
         </div>
