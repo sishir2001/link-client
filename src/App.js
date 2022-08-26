@@ -13,6 +13,7 @@ import IdeaForm from "./components/IdeaForm";
 import SelectRole from "./components/Authentication/SelectRole";
 import Interests from "./components/Authentication/InterestLogin";
 import Profile from "./components/Profile";
+import SignOut from "./components/Authentication/SignOut";
 const theme = createTheme({
     typography: {
         fontFamily: ["Roboto", "Poppins", "Lora"].join(","),
@@ -113,6 +114,9 @@ function App() {
                         </Route>
                         <Route exact path="/interests">
                             <Interests />
+                        </Route>
+                        <Route exact path="/signout">
+                            <SignOut />
                         </Route>
                     </Switch>
                 </div>

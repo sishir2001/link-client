@@ -111,6 +111,7 @@ const Info = (props) => {
 
     useEffect(() => {
         // ! fetch rating and investments from the endpoint
+        console.log(auth);
     }, []);
 
     const handleEditProfile = () => {
@@ -155,9 +156,9 @@ const Info = (props) => {
                         {auth.name}
                     </Typography>
                     <Typography variant="h5" className={classes.infoRole}>
-                        {`${auth.role[0].toUpperCase()}${auth.role.substring(
+                        {/* {`${auth.role[0].toUpperCase()}${auth.role.substring(
                             1
-                        )}`}
+                        )}`} */}
                     </Typography>
                     {renderInfoValidity()}
                 </div>

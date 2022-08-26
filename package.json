@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@hookform/resolvers": "^2.9.7",
+    "lodash": "^4.17.21",
     "react-hook-form": "^7.34.2",
     "yup": "^0.32.11"
   }

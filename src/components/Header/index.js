@@ -6,6 +6,7 @@ import LoggedInOptions from "./LoggedInOptions";
 import globalUseStyles from "../../GlobalStyle";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import _ from "lodash";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,7 +36,7 @@ const Header = (props) => {
     const globalClasses = globalUseStyles();
     const location = useLocation();
 
-    const { isLoggedIn } = useSelector((state) => state.auth);
+    const { jwtToken } = useSelector((state) => state.auth);
     useEffect(() => {
         console.log(location.pathname);
     });
@@ -43,7 +44,7 @@ const Header = (props) => {
     const renderRightHeaderOptions = () => {
         if (location.pathname === "/signin" || location.pathname === "/signup")
             return;
-        if (isLoggedIn) {
+        if (!_.isEmpty(jwtToken)) {
             // loggedIn
             return <LoggedInOptions />;
         } else {

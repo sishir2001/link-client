@@ -7,11 +7,23 @@ import {
     IconButton,
     InputAdornment,
     FormControl,
+    Snackbar,
+    CircularProgress,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
+import _ from "lodash";
 import Img from "../../svgs/image.svg";
 import Dot from "../../svgs/dot.svg";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { signedIn } from "../../actions/auth";
+import { useDispatch } from "react-redux";
+import MuiAlert from "@material-ui/lab/Alert";
+import { clearErrorMessage } from "../../actions/auth";
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -134,7 +146,42 @@ const Signin = (props) => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+
+    const handleClose = (snackBarType) => (event, reason) => {
+        dispatch(clearErrorMessage());
+        // if (reason === "clickaway") {
+        //     return;
+        // }
+        // if (snackBarType === "errorSnackBar") {
+        //     // set errorMessage as empty
+        //     // setErrorMsgSnackBar("");
+        //     // setErrorSnackBar(false);
+        //     dispatch(clearErrorMessage());
+        // }
+    };
+
     const history = useHistory();
+    const { auth } = useSelector((state) => state);
+    const { signInError } = auth;
+    const dispatch = useDispatch();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // check for empty values
+        if (_.isEmpty(values.username) || _.isEmpty(values.password)) {
+            // show error in filling details
+            console.log("Empty fields");
+        } else {
+            console.log("Calling signedIn action creator");
+            dispatch(
+                signedIn({
+                    username: values.username,
+                    password: values.password,
+                    history: history,
+                })
+            );
+        }
+    };
 
     return (
         <div className={classes.root}>
@@ -155,7 +202,11 @@ const Signin = (props) => {
                         </Typography>
                         <img className={classes.img1} src={Dot} alt="dot" />
                     </div>
-                    <form autoComplete="off" className={classes.form}>
+                    <form
+                        autoComplete="off"
+                        className={classes.form}
+                        onSubmit={handleSubmit}
+                    >
                         <FormControl
                             className={clsx(classes.margin, classes.textField)}
                         >
@@ -227,6 +278,29 @@ const Signin = (props) => {
                     </div>
                 </Grid>
             </Grid>
+            {/* // ! error snackbar */}
+            <Snackbar
+                open={!_.isEmpty(signInError)}
+                autoHideDuration={6000}
+                anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                }}
+                onClose={(e) => {
+                    e.preventDefault();
+                    dispatch(clearErrorMessage());
+                }}
+            >
+                <Alert
+                    onClose={(e) => {
+                        e.preventDefault();
+                        dispatch(clearErrorMessage());
+                    }}
+                    severity="error"
+                >
+                    {signInError}
+                </Alert>
+            </Snackbar>
         </div>
     );
 };
