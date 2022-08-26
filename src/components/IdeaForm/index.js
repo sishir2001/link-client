@@ -110,7 +110,7 @@ const IdeaForm = (props) => {
                     onChange={onChange}
                     defaultCurrent={page}
                     className={classes.pagination}
-                    total={50}
+                    total={40}
                 />
             </div>
         );

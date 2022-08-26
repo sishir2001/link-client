@@ -9,6 +9,7 @@ import {
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { API } from "../../../global";
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +49,7 @@ const FormFour = (props) => {
     const [failSaveSnackBar, setFailSaveSnackBar] = useState(false);
     const [failFetchSnackBar, setFailFetchSnackBar] = useState(false);
     const [failFillImpSnackBar, setFailFillImpSnackBar] = useState(false);
+    const history = useHistory();
 
     const apiHeaders = {
         Authorization: "Bearer " + accessToken,
@@ -89,7 +91,14 @@ const FormFour = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // send the page to next
-        setPage(5);
+        // setPage(5);
+        // @JaladiSaaiSishir remove later, for temp
+        console.log("Before removing ideaContentId");
+        console.log(localStorage.getItem("ideaContentId"));
+        localStorage.removeItem("ideaContentId");
+        console.log("After removing ideaContentId");
+        console.log(localStorage.getItem("ideaContentId"));
+        history.push("/profile");
     };
 
     const saveOnAPI = async () => {
