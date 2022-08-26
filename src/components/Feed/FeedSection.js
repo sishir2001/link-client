@@ -167,9 +167,9 @@ const Feed = ({
                                 {role}
                             </Typography>
                             <img src={dot} alt="dot" className={classes.dot} />
-                            <Typography variant="h4" className={classes.time}>
+                            {/* <Typography variant="h4" className={classes.time}>
                                 {time}
-                            </Typography>
+                            </Typography> */}
                         </div>
                     </div>
                     <div className={classes.divType}>

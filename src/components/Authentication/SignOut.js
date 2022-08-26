@@ -13,6 +13,7 @@ const SignOut = (props) => {
     useEffect(() => {
         localStorage.removeItem("jwtToken");
         localStorage.removeItem("ideaContentId");
+        localStorage.removeItem("role");
         console.log(auth.jwtToken);
         if (!_.isEmpty(jwtToken)) {
             dispatch(signOut(jwtToken["access"]));

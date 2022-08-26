@@ -7,12 +7,16 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import { Snackbar } from "@material-ui/core";
 
 import { feed } from "../Feed/FeedList";
 import FeedSection from "../Feed/FeedSection";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { API } from "../../global";
+import MuiAlert from "@material-ui/lab/Alert";
+import _ from "lodash";
+import { type } from "@testing-library/user-event/dist/type";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -34,6 +38,9 @@ function TabPanel(props) {
     );
 }
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 TabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.any.isRequired,
@@ -89,10 +96,14 @@ const useStyles = makeStyles((theme) => ({
     tabSelected: {},
 }));
 
-export default function FullWidthTabs() {
+export default function FullWidthTabs({
+    setErrorSnackBar,
+    setErrorSnackBarMsg,
+}) {
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
+
     // TODO : get accesstoken for fetching the feed
     const { auth } = useSelector((state) => state);
     const { jwtToken } = auth;
@@ -110,19 +121,46 @@ export default function FullWidthTabs() {
     const [allData, setAllData] = useState([]);
     const [psData, setPsData] = useState([]);
     const [ideaData, setIdeaData] = useState([]);
+    // const [communityData, setCommunityData] = useState([]);
 
     const fetchFeed = async () => {
         // fetch from the endpoint
+        // const deFactorAPI = "http://0cd6-103-130-89-183.ngrok.io";
         try {
+            console.log(jwtToken["access"]);
             const res = await fetch(`${API}/home/generate_feed`, {
                 method: "GET",
                 Authorization: "Bearer " + jwtToken["access"],
             });
             const resJson = await res.json();
             console.log(resJson);
+            if (_.isUndefined(resJson.all)) {
+                // ! throw error
+            } else {
+                // * update states
+                let newAllData = resJson.all_cpts;
+                newAllData.append(resJson.all);
+                setAllData(newAllData);
+                setPsData(resJson.ps);
+                setIdeaData(resJson.ids);
+            }
         } catch (e) {
             console.log("error fetching the feed");
             // TODO : add a snackbar to specify the error
+            // setErrorSnackBarMsg(e);
+            // setErrorSnackBar(true);
+        }
+    };
+
+    const renderType = (type) => {
+        if (type === 0) {
+            return "Success Story";
+        } else if (type === 1) {
+            return "Problem Statement";
+        } else if (type === 2) {
+            return "Idea";
+        } else if (type === 3) {
+            return "Community Post";
         }
     };
 
@@ -184,97 +222,58 @@ export default function FullWidthTabs() {
                     dir={theme.direction}
                     className={classes.tabpanel}
                 >
-                    {data.map(
-                        ({
-                            id,
-                            type,
-                            title,
-                            avatar,
-                            description,
-                            likesCount,
-                            username,
-                            role,
-                            hashtags,
-                            time,
-                        }) => {
-                            return (
-                                <FeedSection
-                                    key={id}
-                                    type={type}
-                                    title={title}
-                                    avatar={avatar}
-                                    description={description}
-                                    likesCount={likesCount}
-                                    username={username}
-                                    role={role}
-                                    hashtags={hashtags}
-                                    time={time}
-                                />
-                            );
-                        }
-                    )}
+                    {allData.map((item, idx) => {
+                        return (
+                            <FeedSection
+                                key={idx}
+                                type={renderType(item.type)}
+                                title={item.title}
+                                avatar={item.profile_url}
+                                description={item.description}
+                                username={item.username}
+                                likesCount={item.noOfLikes}
+                                role={item.user_role}
+                                hashtags={item.hashtags}
+                                time={item.createdOn}
+                            />
+                        );
+                    })}
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                    {data.map(
-                        ({
-                            id,
-                            type,
-                            title,
-                            avatar,
-                            description,
-                            likesCount,
-                            username,
-                            role,
-                            hashtags,
-                            time,
-                        }) => {
-                            return (
-                                <FeedSection
-                                    key={id}
-                                    type={type}
-                                    title={title}
-                                    avatar={avatar}
-                                    description={description}
-                                    likesCount={likesCount}
-                                    username={username}
-                                    role={role}
-                                    hashtags={hashtags}
-                                    time={time}
-                                />
-                            );
-                        }
-                    )}
+                    {psData.map((item, idx) => {
+                        return (
+                            <FeedSection
+                                key={idx}
+                                type={renderType(item.type)}
+                                title={item.title}
+                                avatar={item.profile_url}
+                                description={item.description}
+                                username={item.username}
+                                likesCount={item.noOfLikes}
+                                role={item.user_role}
+                                hashtags={item.hashtags}
+                                time={item.createdOn}
+                            />
+                        );
+                    })}
                 </TabPanel>
                 <TabPanel value={value} index={2} dir={theme.direction}>
-                    {data.map(
-                        ({
-                            id,
-                            type,
-                            title,
-                            avatar,
-                            description,
-                            likesCount,
-                            username,
-                            role,
-                            hashtags,
-                            time,
-                        }) => {
-                            return (
-                                <FeedSection
-                                    key={id}
-                                    type={type}
-                                    title={title}
-                                    avatar={avatar}
-                                    description={description}
-                                    likesCount={likesCount}
-                                    username={username}
-                                    role={role}
-                                    hashtags={hashtags}
-                                    time={time}
-                                />
-                            );
-                        }
-                    )}
+                    {psData.map((item, idx) => {
+                        return (
+                            <FeedSection
+                                key={idx}
+                                type={renderType(item.type)}
+                                title={item.title}
+                                avatar={item.profile_url}
+                                description={item.description}
+                                username={item.username}
+                                likesCount={item.noOfLikes}
+                                role={item.user_role}
+                                hashtags={item.hashtags}
+                                time={item.createdOn}
+                            />
+                        );
+                    })}
                 </TabPanel>
             </SwipeableViews>
         </div>

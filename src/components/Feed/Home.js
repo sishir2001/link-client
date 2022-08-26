@@ -6,13 +6,19 @@ import {
     InputBase,
     Typography,
     Link,
+    Snackbar,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import Tabs from "../Feed/FeedTabs.js";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import _ from "lodash";
 import { useHistory } from "react-router-dom";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
@@ -94,7 +100,16 @@ const Home = () => {
     const classes = useStyles();
     const { auth } = useSelector((state) => state);
     const { jwtToken } = auth;
+
+    // for snackbar states
+    const [errorSnackBarMsg, setErrorSnackBarMsg] = useState("");
+    const [errorSnackBar, setErrorSnackBar] = useState(false);
+
     const history = useHistory();
+    const handleClose = (event, reason) => {
+        setErrorSnackBarMsg("");
+        setErrorSnackBar(false);
+    };
 
     // side effect to run every time
     useEffect(() => {
@@ -115,7 +130,10 @@ const Home = () => {
                     className={classes.grid}
                 >
                     <Grid item xs={8} className={classes.grid1}>
-                        <Tabs />
+                        <Tabs
+                            setErrorSnackBar={setErrorSnackBar}
+                            setErrorSnackBarMsg={setErrorSnackBarMsg}
+                        />
                     </Grid>
                     <Grid item xs={3} className={classes.grid2}>
                         <Paper component="form" className={classes.search}>
@@ -149,6 +167,20 @@ const Home = () => {
                     </Grid>
                 </Grid>
             </div>
+            {/* // ! error snackbar */}
+            <Snackbar
+                open={errorSnackBar}
+                autoHideDuration={6000}
+                anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                }}
+                onClose={handleClose}
+            >
+                <Alert onClose={handleClose} severity="error">
+                    {errorSnackBarMsg}
+                </Alert>
+            </Snackbar>
         </div>
     );
 };
