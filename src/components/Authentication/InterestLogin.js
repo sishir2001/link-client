@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, Grid, Typography, Button} from "@material-ui/core";
+import { makeStyles, Grid, Typography, Button, TextField} from "@material-ui/core";
 import Img from "../../svgs/image.svg";
 import Dot from "../../svgs/dot.svg";
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
@@ -26,12 +26,17 @@ const useStyles = makeStyles((theme) => ({
     grid2: {
         background: "white",
         borderRadius: theme.spacing(2),
+        display: "flex",
+        flexDirection: 'column',
+        alignItems: "center",
+        justifyContent: "center",
+        paddingLeft: theme.spacing(6),
+        paddingRight: theme.spacing(6),
+        paddingBottom: theme.spacing(5),
     },
     heading: {
         display: "flex",
         margin: "auto",
-        alignItems: "center",
-        justifyContent: "center",
     },
     title: {
         fontFamily: "Poppins",
@@ -45,6 +50,10 @@ const useStyles = makeStyles((theme) => ({
     },
     img1: {
         marginTop: theme.spacing(6),
+    },
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
     },
     button: {
         color: "white",
@@ -82,10 +91,21 @@ const Interests = () => {
                 <Grid item xs={7} className={classes.grid2}>
                     <div className={classes.heading}>
                         <Typography variant="h4" className={classes.title}>
-                            Your Interests.
+                            Your Interests
                         </Typography>
                         <img className={classes.img1} src={Dot} alt="dot" />
                     </div>
+                    <TextField
+                        id="standard-full-width"
+                        // label="Label"
+                        style={{ margin: 8}}
+                        placeholder="Search Here"
+                        fullWidth
+                        margin="normal"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
                     <Button
                         className={classes.button}
                         variant="contained"
