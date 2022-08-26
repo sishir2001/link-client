@@ -1,17 +1,31 @@
 import React, { useState } from "react";
 import PasswordChecklist from "react-password-checklist";
 import clsx from "clsx";
-import { makeStyles, Grid, Typography, Button, Link,Checkbox} from "@material-ui/core";
 import {
+    makeStyles,
+    Grid,
+    Typography,
+    Button,
+    Link,
+    Checkbox,
     Input,
     InputLabel,
     IconButton,
     InputAdornment,
     FormControl,
+    Snackbar,
+    CircularProgress,
 } from "@material-ui/core";
+
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import Img from "../../svgs/image.svg";
 import Dot from "../../svgs/dot.svg";
+import { useHistory } from "react-router-dom";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -129,14 +143,37 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
     },
+    bufferColor: {
+        colorPrimary: "white",
+    },
 }));
 
 const Signup = (props) => {
     const classes = useStyles();
     const preventDefault = (event) => event.preventDefault();
     const [checked, setChecked] = useState(false);
+    const [successSnackBar, setSuccessSnackBar] = useState(false);
+    const [errorSnackBar, setErrorSnackBar] = useState(false);
+    const [successMsgSnackBar, setSuccessMsgSnackBar] = useState("");
+    const [errorMsgSnackBar, setErrorMsgSnackBar] = useState("");
+    const [signUpBuffer, setSignUpBuffer] = useState(false);
+
     const handleChange = (event) => {
         setChecked(event.target.checked);
+    };
+
+    const handleClose = (snackBarType) => (event, reason) => {
+        if (reason === "clickaway") {
+            return;
+        }
+        if (snackBarType === "successSnackBar") {
+            setSuccessMsgSnackBar("");
+            setSuccessSnackBar(false);
+        }
+        if (snackBarType === "errorSnackBar") {
+            setErrorMsgSnackBar("");
+            setErrorSnackBar(false);
+        }
     };
 
     const [values, setValues] = useState({
@@ -156,7 +193,7 @@ const Signup = (props) => {
     const handleForm = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
-    
+
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     };
@@ -166,6 +203,7 @@ const Signup = (props) => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+    const history = useHistory();
 
     const handleOnKeyUp = (event) => {
         const { value } = event.target;
@@ -210,13 +248,23 @@ const Signup = (props) => {
                     if (!res_json.response) {
                         throw new Error(`Request failed: ${res_json.message}`);
                     } else {
-                        alert("Your registration was successfully submitted!");
+                        // alert("");
+                        setSuccessMsgSnackBar(
+                            "Your registration was successfully submitted!"
+                        );
+                        setSuccessSnackBar(true);
                     }
                 } else {
-                    alert(`Error ${response.status}`);
+                    // alert(``);
+                    setErrorMsgSnackBar(`Error ${response.status}`);
+                    setErrorSnackBar(true);
                 }
             } else {
-                alert("password and confirm password do not match");
+                // alert("");
+                setErrorMsgSnackBar(
+                    "password and confirm password do not match"
+                );
+                setErrorSnackBar(true);
             }
         }
     };
@@ -224,9 +272,25 @@ const Signup = (props) => {
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
+            setSignUpBuffer(true);
             await saveFormData();
+            setSignUpBuffer(false);
         } catch (e) {
-            alert(`Registration failed! ${e.message}`);
+            // alert(``);
+            setSignUpBuffer(false);
+            setErrorMsgSnackBar(`Registration failed! ${e.message}`);
+            setErrorSnackBar(true);
+        }
+    };
+
+    const renderLoading = () => {
+        if (signUpBuffer) {
+            return (
+                <CircularProgress
+                    color="primary"
+                    className={classes.bufferColor}
+                />
+            );
         }
     };
 
@@ -243,6 +307,7 @@ const Signup = (props) => {
                     <img src={Img} alt="Illustration" />
                 </Grid>
                 <Grid item xs={4} className={classes.grid2}>
+                    {/* <LinearProgress color="primary" /> */}
                     <div className={classes.heading}>
                         <Typography variant="h4" className={classes.title}>
                             Register
@@ -367,18 +432,26 @@ const Signup = (props) => {
                             onChange={(isValid) => {}}
                         />
                         <div className={classes.terms}>
-                            <Checkbox checked={checked} onChange={handleChange}
-                                inputProps={{ 'aria-label': 'secondary checkbox' }} required
+                            <Checkbox
+                                checked={checked}
+                                onChange={handleChange}
+                                inputProps={{
+                                    "aria-label": "secondary checkbox",
+                                }}
+                                required
                             />
                             <Typography variant="h6" className={classes.text1}>
                                 I agree to the
                             </Typography>
                             <Link
-                            href="/"
-                            onClick={preventDefault}
-                            className={classes.text2}
+                                href="/"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    history.push("/");
+                                }}
+                                className={classes.text2}
                             >
-                            Terms and Conditions 
+                                Terms and Conditions
                             </Link>
                         </div>
                         <Button
@@ -388,6 +461,7 @@ const Signup = (props) => {
                             style={{ borderRadius: 50 }}
                         >
                             Sign Up
+                            {renderLoading()}
                         </Button>
                     </form>
                     <div className={classes.last}>
@@ -395,8 +469,10 @@ const Signup = (props) => {
                             Already have an account?
                         </Typography>
                         <Link
-                            href="/"
-                            onClick={preventDefault}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                history.push("/signin");
+                            }}
                             className={classes.signin}
                         >
                             Sign in
@@ -404,6 +480,38 @@ const Signup = (props) => {
                     </div>
                 </Grid>
             </Grid>
+
+            {/* // * success snackbar */}
+            <Snackbar
+                open={successSnackBar}
+                autoHideDuration={6000}
+                anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                }}
+                onClose={handleClose("successSnackBar")}
+            >
+                <Alert
+                    onClose={handleClose("successSnackBar")}
+                    severity="success"
+                >
+                    {successMsgSnackBar}
+                </Alert>
+            </Snackbar>
+            {/* // ! error snackbar */}
+            <Snackbar
+                open={errorSnackBar}
+                autoHideDuration={6000}
+                anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                }}
+                onClose={handleClose("errorSnackBar")}
+            >
+                <Alert onClose={handleClose("errorSnackBar")} severity="error">
+                    {errorMsgSnackBar}
+                </Alert>
+            </Snackbar>
         </div>
     );
 };

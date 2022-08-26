@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import LoggedOutOptions from "./LoggedOutOptions";
 import LoggedInOptions from "./LoggedInOptions";
 import globalUseStyles from "../../GlobalStyle";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,10 +33,16 @@ const useStyles = makeStyles((theme) => ({
 const Header = (props) => {
     const classes = useStyles();
     const globalClasses = globalUseStyles();
+    const location = useLocation();
 
     const { isLoggedIn } = useSelector((state) => state.auth);
+    useEffect(() => {
+        console.log(location.pathname);
+    });
 
     const renderRightHeaderOptions = () => {
+        if (location.pathname === "/signin" || location.pathname === "/signup")
+            return;
         if (isLoggedIn) {
             // loggedIn
             return <LoggedInOptions />;

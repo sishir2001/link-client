@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, makeStyles } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     appBarBtn: {
@@ -13,11 +14,16 @@ const useStyles = makeStyles((theme) => ({
 
 const LoggedOutOptions = (props) => {
     const classes = useStyles();
+    const history = useHistory();
     return (
         <>
             <Button
                 variant="contained"
                 color="primary"
+                onClick={(e) => {
+                    e.preventDefault();
+                    history.push("/signin");
+                }}
                 disableElevation
                 className={classes.appBarBtn}
             >
@@ -26,6 +32,10 @@ const LoggedOutOptions = (props) => {
             <Button
                 variant="contained"
                 color="secondary"
+                onClick={(e) => {
+                    e.preventDefault();
+                    history.push("/signup");
+                }}
                 disableElevation
                 className={classes.appBarBtn}
             >
