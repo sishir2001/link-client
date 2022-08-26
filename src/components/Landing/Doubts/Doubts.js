@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
         color: "Black",
         fontSize: "1.5rem",
         fontWeight: 600,
-        paddingRight: 22,
+        // paddingRight: 22,
     },
     sub:{
         color: "#000000",
@@ -77,7 +77,7 @@ const Doubts = (props) => {
                         {faq}
                     </Typography>
                 </Grid>
-                <Grid item xs={0.5}>
+                <Grid item xs={1}>
                     <Button className={classes.button} variant="contained" style={{ borderRadius: 50 }}>
                         View All
                     </Button>

@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: "Poppins",
         fontStyle: "normal",
         fontSize: "1rem",
-        height: "15px",
+        height: theme.spacing(2),
         borderRadius: "12px",
         padding: theme.spacing(1),
         alignItems: "center",
@@ -101,14 +101,16 @@ const useStyles = makeStyles((theme) => ({
     description:{
         fontFamily: "Poppins",
         fontStyle: "normal",
-        fontSize: "1rem",
+        fontSize: "0.9rem",
         fontWeight: "400",
-        color: "rgba(0, 0, 0, 0.7)"
+        color: "rgba(0, 0, 0, 0.7)",
+        marginTop: theme.spacing(1),
     },
     see:{
         fontWeight: "700",
         marginLeft: 'auto',
         marginRight: 0,
+        marginTop: theme.spacing(1),
     },
     hashtags: {
         fontFamily: "Poppins",
@@ -126,6 +128,7 @@ const useStyles = makeStyles((theme) => ({
     like:{
         color: "red",
         marginRight: '5px',
+        cursor: 'pointer',
     },
     count: {
         fontFamily: "Poppins",

@@ -14,6 +14,7 @@ import Signin from "./components/Authentication/Signin";
 import Home from "./components/Feed/Home";
 import SelectRole from "./components/Authentication/SelectRole";
 import Interests from "./components/Authentication/InterestLogin";
+import ProblemStatement from "./components/ProblemStatement/ProblemStatement";
 
 const theme = createTheme({
     typography: {
@@ -104,6 +105,9 @@ function App() {
                     </Route>
                     <Route exact path="/interests">
                         <Interests/>
+                    </Route>
+                    <Route exact path="/problemStatement">
+                        <ProblemStatement/>
                     </Route>
                 </Switch>
             </Router>
