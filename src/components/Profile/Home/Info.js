@@ -42,14 +42,6 @@ const useStyles = makeStyles((theme) => ({
     infoTypography: {
         paddingTop: theme.spacing(2),
         paddingLeft: theme.spacing(5),
-        // "& Button": {
-        //     [theme.breakpoints.up("md")]: {
-        //         size: "small",
-        //     },
-        //     [theme.breakpoints.up("lg")]: {
-        //         size: "large",
-        //     },
-        // },
     },
     infoName: {
         fontWeight: 600,

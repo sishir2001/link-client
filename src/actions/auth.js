@@ -31,6 +31,7 @@ export const signedIn = ({ username, password, history }) => {
                 console.log(jwtToken);
                 // TODO : store it in localstorage
                 localStorage.setItem("jwtToken", JSON.stringify(jwtToken));
+                localStorage.setItem("role", role);
                 console.log(jwtToken);
                 console.log(role);
                 dispatch({
