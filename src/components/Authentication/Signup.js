@@ -8,6 +8,17 @@ import {
     Button,
     Link,
     Checkbox,
+    Modal,
+    Backdrop,
+    Fade,
+} from "@material-ui/core";
+import {
+    makeStyles,
+    Grid,
+    Typography,
+    Button,
+    Link,
+    Checkbox,
     Input,
     InputLabel,
     IconButton,
@@ -26,6 +37,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
+// import Terms from "./Terms";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundImage:
             "linear-gradient(to top, #051937, #002158, #002779, #002a9a, #3028b8);",
         alignItems: "center",
+        position: "relative",
     },
     toolbar: theme.mixins.toolbar,
     grid: {
@@ -146,6 +159,43 @@ const useStyles = makeStyles((theme) => ({
     bufferColor: {
         colorPrimary: "white",
     },
+    modal: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    paper: {
+        backgroundColor: theme.palette.background.paper,
+        borderRadius: "24px",
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
+
+    maindiv: {
+        background: "white",
+        padding: theme.spacing(4),
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "Center",
+        justifyContent: "center",
+        borderRadius: "24px",
+        width: "45vw",
+    },
+    titleterm: {
+        color: "#15186D",
+        fontFamily: "Poppins",
+        fontStyle: "normal",
+        fontWeight: 600,
+        fontSize: "1.5rem",
+        marginBottom: theme.spacing(2),
+    },
+    para: {
+        textAlign: "justify",
+        fontFamily: "Poppins",
+        fontStyle: "normal",
+        fontWeight: 300,
+        fontSize: "0.9rem",
+    },
 }));
 
 const Signup = (props) => {
@@ -157,6 +207,8 @@ const Signup = (props) => {
     const [successMsgSnackBar, setSuccessMsgSnackBar] = useState("");
     const [errorMsgSnackBar, setErrorMsgSnackBar] = useState("");
     const [signUpBuffer, setSignUpBuffer] = useState(false);
+
+    const [open, setOpen] = React.useState(false);
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
@@ -174,6 +226,14 @@ const Signup = (props) => {
             setErrorMsgSnackBar("");
             setErrorSnackBar(false);
         }
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
     };
 
     const [values, setValues] = useState({
@@ -444,9 +504,9 @@ const Signup = (props) => {
                                 I agree to the
                             </Typography>
                             <Link
-                                href="/"
+                                href="#"
                                 onClick={(e) => {
-                                    e.preventDefault();
+                                    e.handleOpen();
                                     history.push("/");
                                 }}
                                 className={classes.text2}
@@ -512,6 +572,72 @@ const Signup = (props) => {
                     {errorMsgSnackBar}
                 </Alert>
             </Snackbar>
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={open}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+            >
+                <Fade in={open}>
+                    <div className={classes.paper}>
+                        <div className={classes.maindiv}>
+                            <h2
+                                id="transition-modal-title"
+                                className={classes.titleterm}
+                            >
+                                Terms and Conditions
+                            </h2>
+                            <p
+                                id="transition-modal-description"
+                                className={classes.para}
+                            >
+                                PLEASE READ THIS TERMS OF SERVICE AGREEMENT
+                                CAREFULLY. BY USING THIS WEBSITE OR ORDERING
+                                PRODUCTS FROM THIS WEBSITE YOU AGREE TO BE BOUND
+                                BY ALL OF THE TERMS AND CONDITIONS OF THIS
+                                AGREEMENT. This Terms of Service Agreement the
+                                "Agreement" governs your use of this website,
+                                link.com the "Link", Link ("Business Name")
+                                offer of products for purchase on this Website,
+                                or your purchase of products available on this
+                                Website. This Agreement includes, and
+                                incorporates by this reference, the policies and
+                                guidelines referenced below. Link reserves the
+                                right to change or revise the terms and
+                                conditions of this Agreement at any time by
+                                posting any changes or a revised Agreement on
+                                this Website. Link will alert you that changes
+                                or revisions have been made by indicating on the
+                                top of this Agreement the date it was last
+                                revised. The changed or revised Agreement will
+                                be effective immediately after it is posted on
+                                this Website. Your use of the Website following
+                                the posting any such changes or of a revised
+                                Agreement will constitute your acceptance of any
+                                such changes or revisions. Link encourages you
+                                to review this Agreement whenever you visit the
+                                Website to make sure that you understand the
+                                terms and conditions governing use of the
+                                Website. This Agreement does not alter in any
+                                way the terms or conditions of any other written
+                                agreement you may have with Link for other
+                                products or services. If you do not agree to
+                                this Agreement (including any referenced
+                                policies or guidelines), please immediately
+                                terminate your use of the Website. If you would
+                                like to print this Agreement, please click the
+                                print button on your browser toolbar.
+                            </p>
+                        </div>
+                    </div>
+                </Fade>
+            </Modal>
         </div>
     );
 };

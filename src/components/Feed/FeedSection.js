@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     description: {
         fontFamily: "Poppins",
         fontStyle: "normal",
-        fontSize: "1rem",
+        fontSize: "0.9rem",
         fontWeight: "400",
         color: "rgba(0, 0, 0, 0.7)",
     },
@@ -112,6 +112,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: "700",
         marginLeft: "auto",
         marginRight: 0,
+        marginTop: theme.spacing(1),
     },
     hashtags: {
         fontFamily: "Poppins",

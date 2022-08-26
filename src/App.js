@@ -12,6 +12,7 @@ import Home from "./components/Feed/Home";
 import IdeaForm from "./components/IdeaForm";
 import SelectRole from "./components/Authentication/SelectRole";
 import Interests from "./components/Authentication/InterestLogin";
+import ProblemStatement from "./components/ProblemStatement/ProblemStatement";
 import Profile from "./components/Profile";
 import SignOut from "./components/Authentication/SignOut";
 const theme = createTheme({
@@ -117,6 +118,9 @@ function App() {
                         </Route>
                         <Route exact path="/signout">
                             <SignOut />
+                        </Route>
+                        <Route exact path="/problemStatement">
+                            <ProblemStatement />
                         </Route>
                     </Switch>
                 </div>

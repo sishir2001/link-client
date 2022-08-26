@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         color: "Black",
         fontSize: "1.5rem",
         fontWeight: 600,
-        paddingRight: 22,
+        // paddingRight: 22,
     },
     sub: {
         color: "#000000",
