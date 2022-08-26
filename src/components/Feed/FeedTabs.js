@@ -127,11 +127,11 @@ export default function FullWidthTabs({
         // fetch from the endpoint
         // const deFactorAPI = "http://0cd6-103-130-89-183.ngrok.io";
         try {
-            console.log(jwtToken["access"]);
             const res = await fetch(`${API}/home/generate_feed`, {
                 method: "GET",
                 Authorization: "Bearer " + jwtToken["access"],
             });
+
             const resJson = await res.json();
             console.log(resJson);
             if (_.isUndefined(resJson.all)) {

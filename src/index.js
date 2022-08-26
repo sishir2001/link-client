@@ -16,11 +16,13 @@ const store = createStore(
     reducers,
     {
         auth: {
-            jwtToken: _.isNull(localStorage.getItem("jwtToken"))
+            jwtToken: _.isUndefined(localStorage.getItem("jwtToken"))
                 ? {}
                 : JSON.parse(localStorage.getItem("jwtToken")),
         },
-        role: _.isNull(localStorage.getItem("role")),
+        // role: _.isUndefined(localStorage.getItem("role"))
+        //     ? ""
+        //     : localStorage.getItem("role"),
     },
     composeWithDevTools(applyMiddleware(thunk))
 );
