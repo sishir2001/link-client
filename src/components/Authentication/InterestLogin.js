@@ -66,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: "500",
         marginTop: theme.spacing(3),
         display: "flex",
-        marginTop: "60px",
         alignItems: "center",
         justifyContent: "center",
     },
