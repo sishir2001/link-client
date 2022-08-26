@@ -19,6 +19,7 @@ import {
     Snackbar,
     CircularProgress,
 } from "@material-ui/core";
+import { API } from "../../global";
 
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import Img from "../../svgs/image.svg";
@@ -192,7 +193,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Signup = (props) => {
     const classes = useStyles();
-    const preventDefault = (event) => event.preventDefault();
+    // const preventDefault = (event) => event.preventDefault();
     const [checked, setChecked] = useState(false);
     const [successSnackBar, setSuccessSnackBar] = useState(false);
     const [errorSnackBar, setErrorSnackBar] = useState(false);
@@ -287,13 +288,10 @@ const Signup = (props) => {
             checks.specialCharCheck === true
         ) {
             if (values.password === values.passwordAgain) {
-                const response = await fetch(
-                    "https://theprojectlink.herokuapp.com/auth/signup",
-                    {
-                        method: "POST",
-                        body: formdata,
-                    }
-                );
+                const response = await fetch(`${API}/auth/signup`, {
+                    method: "POST",
+                    body: formdata,
+                });
                 if (response.ok) {
                     const res_json = await response.json();
                     console.log(res_json);

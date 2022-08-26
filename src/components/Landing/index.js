@@ -6,12 +6,16 @@ import _ from "lodash";
 const AuthCheck = (props) => {
     const history = useHistory();
     const { auth } = useSelector((state) => state);
-    const { jwtToken } = auth;
+    const { jwtToken, role } = auth;
 
     // run only once when the components are mounted
     useEffect(() => {
         // check whether the user is signed in or not
-        if (!_.isNull(jwtToken)) {
+        if (_.isNull(role) || _.isEmpty(role) || _.isUndefined(role)) {
+            // redirect to roles
+            history.push("/role");
+            // return;
+        } else if (!_.isNull(jwtToken)) {
             history.push("/feed");
             console.log(jwtToken);
         } else {

@@ -148,7 +148,7 @@ const SelectRole = () => {
                 // no matching role
                 console.log(resJson.detail);
             } else {
-                history.push("/interests");
+                history.push("/feed");
             }
         } catch (e) {
             console.log(e);
