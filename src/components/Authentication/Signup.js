@@ -11,14 +11,6 @@ import {
     Modal,
     Backdrop,
     Fade,
-} from "@material-ui/core";
-import {
-    makeStyles,
-    Grid,
-    Typography,
-    Button,
-    Link,
-    Checkbox,
     Input,
     InputLabel,
     IconButton,
@@ -232,7 +224,7 @@ const Signup = (props) => {
         setOpen(true);
     };
 
-    const handleClose = () => {
+    const handleModalClose = () => {
         setOpen(false);
     };
 
@@ -506,8 +498,8 @@ const Signup = (props) => {
                             <Link
                                 href="#"
                                 onClick={(e) => {
-                                    e.handleOpen();
-                                    history.push("/");
+                                    e.preventDefault();
+                                    handleOpen();
                                 }}
                                 className={classes.text2}
                             >
@@ -577,7 +569,7 @@ const Signup = (props) => {
                 aria-describedby="transition-modal-description"
                 className={classes.modal}
                 open={open}
-                onClose={handleClose}
+                onClose={handleModalClose}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
