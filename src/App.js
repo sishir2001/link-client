@@ -8,6 +8,7 @@ import Notifications from "./components/Notification/Notifications";
 import Signup from "./components/Authentication/Signup";
 import Signin from "./components/Authentication/Signin";
 import Feed from "./components/Feed";
+import Home from "./components/Feed/Home";
 import IdeaForm from "./components/IdeaForm";
 import SelectRole from "./components/Authentication/SelectRole";
 import Interests from "./components/Authentication/InterestLogin";
@@ -90,7 +91,7 @@ function App() {
                             <Landing />
                         </Route>
                         <Route exact path="/feed">
-                            <Feed />
+                            <Home />
                         </Route>
                         <Route path="/profile">
                             <Profile />
