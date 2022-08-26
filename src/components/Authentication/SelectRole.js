@@ -72,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "60px",
         alignItems: "center",
         justifyContent: "center",
+        cursor: "pointer",
     },
 }));
 
@@ -136,6 +137,7 @@ const SelectRole = () => {
                 variant="contained"
                 style={{ borderRadius: 10 }}
                 endIcon={<ArrowForwardIcon/>}
+                disabled
             >
                 Next
             </Button>

@@ -84,7 +84,9 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     tabSelected: {},
-
+    tabpanel: {
+      marginBottom: theme.spacing(5),
+    },
 }));
 
 export default function FullWidthTabs() {
@@ -149,14 +151,14 @@ export default function FullWidthTabs() {
                     )
             })}
         </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
+        <TabPanel value={value} index={1} dir={theme.direction} className={classes.tabpanel}>
             {data.map (({id,type,title,avatar, description, likesCount,username,role,hashtags,time}) => {
                 return(
                     <FeedSection key={id} type = {type} title ={title} avatar = {avatar} description ={description} likesCount= {likesCount} username = {username} role = {role} hashtags= {hashtags} time = {time}/>
                 )
             })}
         </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
+        <TabPanel value={value} index={2} dir={theme.direction} className={classes.tabpanel}>
             {data.map (({id,type,title,avatar, description, likesCount,username,role,hashtags,time}) => {
                 return(
                     <FeedSection key={id} type = {type} title ={title} avatar = {avatar} description ={description} likesCount= {likesCount} username = {username} role = {role} hashtags= {hashtags} time = {time}/>
