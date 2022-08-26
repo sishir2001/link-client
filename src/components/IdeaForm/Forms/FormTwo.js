@@ -70,7 +70,7 @@ const FormTwo = (props) => {
     });
 
     const { auth } = useSelector((state) => state);
-    const accessToken = auth.jwtToken;
+    const accessToken = auth.jwtToken["access"];
     const apiHeaders = {
         Authorization: "Bearer " + accessToken,
     };
@@ -140,7 +140,10 @@ const FormTwo = (props) => {
             } else {
                 res = formData.one_problem_type + "," + checkBoxType;
             }
-            setProbType({ ...probType, [checkBoxType]: true });
+            setProbType({
+                ...probType,
+                [checkBoxType]: !probType[checkBoxType],
+            });
             setFormData({ ...formData, [type]: res });
         } else {
             setFormData({ ...formData, [type]: event.target.value });

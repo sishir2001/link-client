@@ -66,6 +66,14 @@ const LoggedInOptions = (props) => {
             console.log(e);
         }
     };
+    const handleAddIdea = () => {
+        try {
+            setAnchorEl(null);
+            history.push("/ideaform");
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
     return (
         <>
@@ -83,6 +91,7 @@ const LoggedInOptions = (props) => {
                     // aria-controls="menu-appbar"
                     // aria-haspopup="true"
                     className={classes.menuButton}
+                    onClick={handleAddIdea}
                     color="inherit"
                 >
                     <AddCircleIcon />

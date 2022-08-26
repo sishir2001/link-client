@@ -39,7 +39,7 @@ const FormFour = (props) => {
     const classes = useStyles();
     const [ideaContentId, setIdeaContentId] = useState(null);
     const { auth } = useSelector((state) => state);
-    const accessToken = auth.jwtToken;
+    const accessToken = auth.jwtToken["access"];
 
     const [nextDisable, setNextDisable] = useState(true);
     const { filled, setFilled, setPage, endPoint } = props;

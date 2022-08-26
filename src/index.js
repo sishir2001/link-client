@@ -8,8 +8,9 @@ import reducers from "./reducers";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import _ from "lodash";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // TODO : whenever the application , check whether jwtToken exists in localstorage
 const store = createStore(
     reducers,
@@ -17,10 +18,10 @@ const store = createStore(
         auth: {
             jwtToken: _.isUndefined(localStorage.getItem("jwtToken"))
                 ? {}
-                : localStorage.getItem("jwtToken"),
+                : JSON.parse(localStorage.getItem("jwtToken")),
         },
     },
-    composeEnhancers(applyMiddleware(thunk))
+    composeWithDevTools(applyMiddleware(thunk))
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

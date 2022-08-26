@@ -19,9 +19,12 @@ const INITIAL_STATE = {
 export const authReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SIGN_IN:
+            console.log(action.payload.jwtToken);
+            console.log(action.payload.role);
             return {
                 ...state,
-                jwtToken: action.payload,
+                jwtToken: { ...action.payload.jwtToken },
+                role: action.payload.role,
             };
         case SIGN_IN_ERROR:
             return {

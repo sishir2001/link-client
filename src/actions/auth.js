@@ -17,7 +17,7 @@ export const signedIn = ({ username, password, history }) => {
 
             const resJson = await res.json();
             console.log(resJson);
-            const { jwtToken } = resJson;
+            const { jwtToken, role } = resJson;
             if (_.isUndefined(jwtToken)) {
                 // ? dispatch error
                 console.log(resJson.message);
@@ -30,14 +30,17 @@ export const signedIn = ({ username, password, history }) => {
             } else {
                 console.log(jwtToken);
                 // TODO : store it in localstorage
-                localStorage.setItem("jwtToken", jwtToken);
-                history.push("/");
+                localStorage.setItem("jwtToken", JSON.stringify(jwtToken));
+                console.log(jwtToken);
+                console.log(role);
                 dispatch({
                     type: SIGN_IN,
                     payload: {
-                        ...jwtToken,
+                        jwtToken: jwtToken,
+                        role: role,
                     },
                 });
+                history.push("/");
             }
         } catch (e) {
             console.log(`Error occured while logging in ${e}`);
@@ -58,9 +61,25 @@ export const clearErrorMessage = () => {
     // dispatch({});
 };
 
-export const signOut = () => {
-    return {
-        type: SIGN_OUT,
+export const signOut = (accessToken) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await fetch(`${API}/auth/logout`, {
+                method: "POST",
+                headers: {
+                    Authorization: "Bearer " + accessToken,
+                },
+            });
+            const resJson = await res.json();
+            dispatch({
+                type: SIGN_OUT,
+            });
+        } catch (e) {
+            console.log("Error in signout");
+            console.log(e);
+            dispatch({
+                type: SIGN_OUT,
+            });
+        }
     };
-    // dispatch({});
 };

@@ -51,6 +51,7 @@
     "@hookform/resolvers": "^2.9.7",
     "lodash": "^4.17.21",
     "react-hook-form": "^7.34.2",
+    "redux-devtools-extension": "^2.13.9",
     "yup": "^0.32.11"
   }
 }

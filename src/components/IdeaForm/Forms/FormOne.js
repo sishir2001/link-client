@@ -61,7 +61,7 @@ const FormOne = (props) => {
 
     const { filled, setFilled, setOwn, setPage, endPoint } = props;
     const { auth } = useSelector((state) => state);
-    const accessToken = auth.jwtToken;
+    const accessToken = auth.jwtToken["access"];
     const apiHeaders = {
         Authorization: "Bearer " + accessToken,
     };

@@ -77,7 +77,7 @@ const FormThree = (props) => {
     });
 
     const { auth } = useSelector((state) => state);
-    const accessToken = auth.jwtToken;
+    const accessToken = auth.jwtToken["access"];
     const apiHeaders = {
         Authorization: "Bearer " + accessToken,
     };
@@ -144,7 +144,10 @@ const FormThree = (props) => {
             } else {
                 res = formData.one_problem_type + "," + checkBoxType;
             }
-            setideaStatus({ ...ideaStatus, [checkBoxType]: true });
+            setideaStatus({
+                ...ideaStatus,
+                [checkBoxType]: !ideaStatus[checkBoxType],
+            });
             setFormData({ ...formData, [type]: res });
         } else {
             setFormData({ ...formData, [type]: event.target.value });

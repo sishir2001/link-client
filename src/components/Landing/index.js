@@ -11,8 +11,9 @@ const AuthCheck = (props) => {
     // run only once when the components are mounted
     useEffect(() => {
         // check whether the user is signed in or not
-        if (!_.isEmpty(jwtToken)) {
+        if (!_.isNull(jwtToken)) {
             history.push("/feed");
+            console.log(jwtToken);
         } else {
             history.push("/landing");
         }

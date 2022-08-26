@@ -20,6 +20,7 @@ import { signedIn } from "../../actions/auth";
 import { useDispatch } from "react-redux";
 import MuiAlert from "@material-ui/lab/Alert";
 import { clearErrorMessage } from "../../actions/auth";
+import { useEffect } from "react";
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -162,7 +163,7 @@ const Signin = (props) => {
 
     const history = useHistory();
     const { auth } = useSelector((state) => state);
-    const { signInError } = auth;
+    const { signInError, jwtToken } = auth;
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
@@ -182,6 +183,13 @@ const Signin = (props) => {
             );
         }
     };
+
+    // useEffect(() => {
+    //     console.log(jwtToken);
+    //     if (!_.isEmpty(jwtToken)) {
+    //         history.push("/");
+    //     }
+    // }, jwtToken);
 
     return (
         <div className={classes.root}>

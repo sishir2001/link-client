@@ -27,8 +27,10 @@ const useStyles = makeStyles((theme) => ({
             "linear-gradient(to top, #051937, #002158, #002779, #002a9a, #3028b8);",
     },
     main: {
-        marginLeft: theme.spacing(5),
-        marginRight: theme.spacing(5),
+        marginTop: theme.spacing(3),
+        marginBottom: theme.spacing(3),
+        // marginLeft: theme.spacing(5),
+        // marginRight: theme.spacing(5),
     },
     grid: {
         padding: 0,
@@ -96,8 +98,9 @@ const Home = () => {
 
     useEffect(() => {
         // check for logged in
-        if (_.isEmpty(jwtToken)) {
-            history.push("/");
+        if (_.isNull(jwtToken) || _.isEmpty(jwtToken)) {
+            history.push("/landing");
+            // console.log(jwtToken["access"]);
         }
     });
 

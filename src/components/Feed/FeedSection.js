@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 import photo from "../../svgs/avatar.svg";
 import dot from "../../svgs/maindot.svg";
-import { makeStyles, Typography, Link} from "@material-ui/core";
-import verticaldots from "../../svgs/verticaldots.svg"
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
-import clsx from 'clsx';
+import { makeStyles, Typography, Link } from "@material-ui/core";
+import verticaldots from "../../svgs/verticaldots.svg";
+import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
+import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
         display: "flex",
         flexDirection: "column",
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        marginLeft: "auto",
+        marginRight: "auto",
         borderRadius: "15px",
-        filter: "drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.25))"
+        filter: "drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.25))",
     },
     main: {
         display: "flex",
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(5),
         marginRight: theme.spacing(5),
     },
-    header:{
+    header: {
         display: "flex",
     },
     div1: {
@@ -43,10 +43,10 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
         marginRight: theme.spacing(2),
     },
-    username:{
+    username: {
         fontFamily: "Poppins",
         fontStyle: "normal",
-        fontWeight: '700',
+        fontWeight: "700",
         fontSize: "1rem",
         color: "black",
         marginBottom: theme.spacing(1),
@@ -68,24 +68,27 @@ const useStyles = makeStyles((theme) => ({
     dot: {
         marginRight: theme.spacing(1),
     },
-    type: {
+    divType: {
         background: "#FFD759",
+        padding: theme.spacing(1),
+        height: "max-content",
+        borderRadius: "12px",
+    },
+    type: {
         fontFamily: "Poppins",
         fontStyle: "normal",
         fontSize: "1rem",
-        height: "15px",
-        borderRadius: "12px",
-        padding: theme.spacing(1),
+        height: theme.spacing(2),
         alignItems: "center",
         justifyContent: "center",
     },
     dots: {
         display: "flex",
         justifyContent: "right",
-        marginLeft: 'auto',
+        marginLeft: "auto",
         marginRight: 0,
     },
-    div3:{
+    div3: {
         display: "flex",
         flexDirection: "column",
         textAlign: "justify",
@@ -96,18 +99,18 @@ const useStyles = makeStyles((theme) => ({
         fontStyle: "normal",
         fontSize: "1rem",
         fontWeight: "500",
-        color: "black"
+        color: "black",
     },
-    description:{
+    description: {
         fontFamily: "Poppins",
         fontStyle: "normal",
         fontSize: "1rem",
         fontWeight: "400",
-        color: "rgba(0, 0, 0, 0.7)"
+        color: "rgba(0, 0, 0, 0.7)",
     },
-    see:{
+    see: {
         fontWeight: "700",
-        marginLeft: 'auto',
+        marginLeft: "auto",
         marginRight: 0,
     },
     hashtags: {
@@ -116,16 +119,15 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "1rem",
         fontWeight: "400",
         color: "#15186D",
-
     },
-    div4:{
+    div4: {
         display: "flex",
         marginTop: theme.spacing(2),
-        alignItems: 'center',
+        alignItems: "center",
     },
-    like:{
+    like: {
         color: "red",
-        marginRight: '5px',
+        marginRight: "5px",
     },
     count: {
         fontFamily: "Poppins",
@@ -136,16 +138,26 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Feed = ({type,title,avatar,description,likesCount,username,role,hashtags,time}) => {
+const Feed = ({
+    type,
+    title,
+    avatar,
+    description,
+    likesCount,
+    username,
+    role,
+    hashtags,
+    time,
+}) => {
     const classes = useStyles();
-    return(
+    return (
         <div className={classes.root}>
             <div className={classes.main}>
                 <div className={classes.header}>
-                    <img src={photo} alt ="avatar" className={classes.avatar}/>
+                    <img src={photo} alt="avatar" className={classes.avatar} />
                     <div className={classes.div1}>
                         <Typography variant="h5" className={classes.usename}>
-                            <Link href="#" color='textPrimary'>
+                            <Link href="#" color="textPrimary">
                                 {username}
                             </Link>
                         </Typography>
@@ -153,16 +165,22 @@ const Feed = ({type,title,avatar,description,likesCount,username,role,hashtags,t
                             <Typography variant="h4" className={classes.role}>
                                 {role}
                             </Typography>
-                            <img src={dot} alt ='dot' className={classes.dot}/>
+                            <img src={dot} alt="dot" className={classes.dot} />
                             <Typography variant="h4" className={classes.time}>
                                 {time}
                             </Typography>
                         </div>
                     </div>
-                    <Typography variant="h4" className={classes.type}>
-                        {type}
-                    </Typography>
-                    <img src={verticaldots} alt='dots' className={classes.dots}/>
+                    <div className={classes.divType}>
+                        <Typography variant="h4" className={classes.type}>
+                            {type}
+                        </Typography>
+                    </div>
+                    <img
+                        src={verticaldots}
+                        alt="dots"
+                        className={classes.dots}
+                    />
                 </div>
                 <div className={classes.div3}>
                     <Typography variant="h4" className={classes.title}>
@@ -172,8 +190,14 @@ const Feed = ({type,title,avatar,description,likesCount,username,role,hashtags,t
                         {description}
                     </Typography>
                 </div>
-                <Typography variant="h4" className={clsx(classes.description, classes.see)} >
-                    <Link href="#" className={clsx(classes.description, classes.see)}>
+                <Typography
+                    variant="h4"
+                    className={clsx(classes.description, classes.see)}
+                >
+                    <Link
+                        href="#"
+                        className={clsx(classes.description, classes.see)}
+                    >
                         See more
                     </Link>
                 </Typography>
@@ -181,15 +205,14 @@ const Feed = ({type,title,avatar,description,likesCount,username,role,hashtags,t
                     {hashtags}
                 </Typography>
                 <div className={classes.div4}>
-                    <FavoriteBorderOutlinedIcon className={classes.like}/>
+                    <FavoriteBorderOutlinedIcon className={classes.like} />
                     <Typography variant="h4" className={classes.count}>
-                            {likesCount}
+                        {likesCount}
                     </Typography>
                 </div>
             </div>
-
         </div>
     );
-}
+};
 
 export default Feed;
