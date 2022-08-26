@@ -9,6 +9,8 @@ import Signup from "./components/Authentication/Signup";
 import Signin from "./components/Authentication/Signin";
 import Feed from "./components/Feed";
 import IdeaForm from "./components/IdeaForm";
+import SelectRole from "./components/Authentication/SelectRole";
+import Interests from "./components/Authentication/InterestLogin";
 import Profile from "./components/Profile";
 const theme = createTheme({
     typography: {
@@ -104,6 +106,12 @@ function App() {
                         </Route>
                         <Route exact path="/notifications">
                             <Notifications />
+                        </Route>
+                        <Route exact path="/role">
+                            <SelectRole />
+                        </Route>
+                        <Route exact path="/interests">
+                            <Interests />
                         </Route>
                     </Switch>
                 </div>

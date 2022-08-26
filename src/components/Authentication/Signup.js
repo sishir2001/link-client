@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PasswordChecklist from "react-password-checklist";
 import clsx from "clsx";
-import { makeStyles, Grid, Typography, Button, Link } from "@material-ui/core";
+import { makeStyles, Grid, Typography, Button, Link,Checkbox} from "@material-ui/core";
 import {
     Input,
     InputLabel,
@@ -61,11 +61,10 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        paddingTop: theme.spacing(3),
+        paddingTop: theme.spacing(2),
     },
     margin: {
         margin: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
     },
     withoutLabel: {
         marginTop: theme.spacing(3),
@@ -112,13 +111,33 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 500,
         fontSize: "1vw",
     },
+    text1: {
+        fontFamily: "Poppins",
+        fontStyle: "normal",
+        fontWeight: 500,
+        fontSize: "0.95vw",
+        color: "rgba(21, 24, 109, 0.6)",
+        marginRight: theme.spacing(1),
+    },
+    text2: {
+        fontFamily: "Poppins",
+        fontStyle: "normal",
+        fontWeight: 500,
+        fontSize: "0.95vw",
+    },
+    terms: {
+        display: "flex",
+        alignItems: "center",
+    },
 }));
 
 const Signup = (props) => {
     const classes = useStyles();
     const preventDefault = (event) => event.preventDefault();
-    // const [password, setPassword] = useState("")
-    // const [passwordAgain, setPasswordAgain] = useState("")
+    const [checked, setChecked] = useState(false);
+    const handleChange = (event) => {
+        setChecked(event.target.checked);
+    };
 
     const [values, setValues] = useState({
         username: "",
@@ -137,18 +156,7 @@ const Signup = (props) => {
     const handleForm = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
-    // const handleUsername = (prop) => (event) => {
-    //     setValues({ ...values, [prop]: event.target.value });
-    // };
-    // const handleEmail = (prop) => (event) => {
-    //     setValues({ ...values, [prop]: event.target.value });
-    // };
-    // const handleChange = (prop) => (event) => {
-    //     setValues({ ...values, [prop]: event.target.value });
-    // };
-    // const handleChangeAgain = (prop) => (event) => {
-    //     setValues({ ...values, [prop]: event.target.value });
-    // };
+    
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     };
@@ -358,6 +366,21 @@ const Signup = (props) => {
                             valueAgain={values.passwordAgain}
                             onChange={(isValid) => {}}
                         />
+                        <div className={classes.terms}>
+                            <Checkbox checked={checked} onChange={handleChange}
+                                inputProps={{ 'aria-label': 'secondary checkbox' }} required
+                            />
+                            <Typography variant="h6" className={classes.text1}>
+                                I agree to the
+                            </Typography>
+                            <Link
+                            href="/"
+                            onClick={preventDefault}
+                            className={classes.text2}
+                            >
+                            Terms and Conditions 
+                            </Link>
+                        </div>
                         <Button
                             type="submit"
                             className={classes.button}
