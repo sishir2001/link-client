@@ -96,11 +96,11 @@ const Home = () => {
     const { jwtToken } = auth;
     const history = useHistory();
 
+    // side effect to run every time
     useEffect(() => {
         // check for logged in
         if (_.isNull(jwtToken) || _.isEmpty(jwtToken)) {
             history.push("/landing");
-            // console.log(jwtToken["access"]);
         }
     });
 
