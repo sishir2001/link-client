@@ -1,19 +1,29 @@
-import { makeStyles } from "@material-ui/core";
-import React from "react";
-import Home from "./Home";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import _ from "lodash";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        padding: theme.spacing(3),
-    },
-}));
+const AuthCheck = (props) => {
+    const history = useHistory();
+    const { auth } = useSelector((state) => state);
+    const { jwtToken, role } = auth;
 
-const Landing = (props) => {
-    const classes = useStyles();
-    return (
-        <div>
-            <Home />
-        </div>
-    );
+    // run only once when the components are mounted
+    useEffect(() => {
+        // check whether the user is signed in or not
+        if (_.isNull(role) || _.isEmpty(role) || _.isUndefined(role)) {
+            // redirect to roles
+            history.push("/role");
+            // return;
+        } else if (!_.isNull(jwtToken)) {
+            history.push("/feed");
+            console.log(jwtToken);
+        } else {
+            history.push("/landing");
+        }
+    }, []);
+
+    // ! need buffering here
+    return <div></div>;
 };
-export default Landing;
+export default AuthCheck;

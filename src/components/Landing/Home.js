@@ -2,6 +2,7 @@ import { makeStyles, Grid, Typography, Button } from "@material-ui/core";
 import React from "react";
 import bulbSVG from "../../svgs/Bulb.svg";
 import playSVG from "../../svgs/play.svg";
+import globalUseStyles from "../../GlobalStyle";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -11,10 +12,9 @@ const useStyles = makeStyles((theme) => ({
             "linear-gradient(to top, #051937, #002158, #002779, #002a9a, #3028b8);",
         height: `100vh`,
         color: "white",
-        paddingLeft: theme.spacing(4),
-        paddingRight: theme.spacing(4),
+        // paddingLeft: theme.spacing(4),
+        // paddingRight: theme.spacing(4),
     },
-    toolbar: theme.mixins.toolbar,
     typo: {
         marginTop: theme.spacing(3),
     },
@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
     motto: {
         fontFamily: "Lora",
+        color: "white",
     },
     playSVG: {
         marginLeft: -60,
@@ -33,22 +34,26 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Home = (props) => {
+const Home = ({ scrollRef }) => {
     const classes = useStyles();
+    const globalClasses = globalUseStyles();
     const motto = "Link between your journey from empathizing to implementing.";
     const wish = "Join us today to make your dream into a reality...";
 
     const handleKnowMore = () => {
         console.log("Clicked on know more");
+        // scrollRef.current?.scrollIntoView({
+        //     behavior: "smooth",
+        // });
     };
     return (
-        <div className={classes.root}>
-            <div className={classes.toolbar}></div>
-            <div className={classes.toolbar}></div>
+        <div className={`${globalClasses.toolbarMargin} ${classes.root}`}>
+            <div className={globalClasses.toolbar}></div>
+            <div className={globalClasses.toolbar}></div>
             <Grid container spacing={4}>
                 {/* Text */}
                 <Grid item xs={7}>
-                    <div className={classes.toolbar}></div>
+                    <div className={globalClasses.toolbar}></div>
                     <Typography variant="h2" className={classes.typo}>
                         {motto}
                     </Typography>

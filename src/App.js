@@ -1,21 +1,30 @@
-import {
-    Container,
-    createTheme,
-    makeStyles,
-    ThemeProvider,
-} from "@material-ui/core";
+import React, { useEffect } from "react";
+import { createTheme, makeStyles, ThemeProvider } from "@material-ui/core";
 import Header from "./components/Header";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-import Landing from "./components/Landing";
+import AuthCheck from "./components/Landing/index";
+import Landing from "./components/Landing/Landing";
+import Notifications from "./components/Notification/Notifications";
+import Signup from "./components/Authentication/Signup";
+import Signin from "./components/Authentication/Signin";
+import Home from "./components/Feed/Home";
+import IdeaForm from "./components/IdeaForm";
+import SelectRole from "./components/Authentication/SelectRole";
+import Interests from "./components/Authentication/InterestLogin";
+import ProblemStatement from "./components/ProblemStatement/ProblemStatement";
+import Profile from "./components/Profile";
+import SignOut from "./components/Authentication/SignOut";
 
 const theme = createTheme({
     typography: {
         fontFamily: ["Roboto", "Poppins", "Lora"].join(","),
         h1: {
             fontFamily: '"Poppins",Roboto',
+            color: "white",
         },
         h2: {
             fontFamily: '"Poppins",Roboto',
+            color: "white",
         },
         h3: {
             fontFamily: '"Poppins",Roboto',
@@ -73,14 +82,48 @@ function App() {
     const classes = useStyles();
     return (
         <ThemeProvider theme={theme}>
-            <Header />
-            {/* <div className={classes.toolbar}></div> */}
             <Router>
-                <Switch>
-                    <Route exact path="/">
-                        <Landing />
-                    </Route>
-                </Switch>
+                <Header />
+                <div>
+                    <Switch>
+                        <Route exact path="/">
+                            <AuthCheck />
+                        </Route>
+                        <Route exact path="/landing">
+                            <Landing />
+                        </Route>
+                        <Route exact path="/feed">
+                            <Home />
+                        </Route>
+                        <Route path="/profile">
+                            <Profile />
+                        </Route>
+                        <Route path="/ideaform">
+                            <IdeaForm />
+                        </Route>
+                        <Route exact path="/signup">
+                            <Signup />
+                        </Route>
+                        <Route exact path="/signin">
+                            <Signin />
+                        </Route>
+                        <Route exact path="/notifications">
+                            <Notifications />
+                        </Route>
+                        <Route exact path="/role">
+                            <SelectRole />
+                        </Route>
+                        <Route exact path="/interests">
+                            <Interests />
+                        </Route>
+                        <Route exact path="/signout">
+                            <SignOut />
+                        </Route>
+                        <Route exact path="/problemStatement">
+                            <ProblemStatement />
+                        </Route>
+                    </Switch>
+                </div>
             </Router>
         </ThemeProvider>
     );
